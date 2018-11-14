@@ -47,8 +47,8 @@ json 是一种轻量级的数据交换格式，易于阅读和编写，也很容
 | END_DOCUMENT    | 	表示JSON数据结束 |
 
 ** 解析思路
-由于JSON的Object和Array可以嵌套，在读取过程中，使用一个栈来存储Object和Array是必须的。每当我们读到一个=BEGIN_OBJECT=时，就创建一个=Map=并压栈；每当读到一个=BEGIN_ARRAY=时，就创建一个=List=并压栈；每当读到一个=END_OBJECT=和=END_ARRAY=时，就弹出栈顶元素，并根据新的栈顶元素判断是否压栈。此外，读到Object的Key也必须压栈，读到后面的Value后将Key-Value压入栈顶的Map。
+由于JSON的Object和Array可以嵌套，在读取过程中，使用一个栈来存储Object和Array是必须的。每当我们读到一个 ~BEGIN_OBJECT~ 时，就创建一个 ~Map~ 并压栈；每当读到一个 ~BEGIN_ARRAY~ 时，就创建一个 ~List~ 并压栈；每当读到一个 ~END_OBJECT~ 和 ~END_ARRAY~ 时，就弹出栈顶元素，并根据新的栈顶元素判断是否压栈。此外，读到Object的Key也必须压栈，读到后面的Value后将Key-Value压入栈顶的Map。
 
-如果读到=END_DOCUMENT=时，栈恰好只剩下一个元素，则读取正确，将该元素返回，读取结束。如果栈剩下不止一个元素，则JSON文档格式不正确。
+如果读到 ~END_DOCUMENT~ 时，栈恰好只剩下一个元素，则读取正确，将该元素返回，读取结束。如果栈剩下不止一个元素，则JSON文档格式不正确。
 
-最后，=JsonReader=的核心解析代码=parse()=就是负责从=TokenReader=中不断读取Token，根据当前状态操作，然后设定下一个Token期望的状态，如果与期望状态不符，则JSON的格式无效。起始状态被设定为=STATUS_EXPECT_SINGLE_VALUE | STATUS_EXPECT_BEGIN_OBJECT | STATUS_EXPECT_BEGIN_ARRAY=，即期望读取到单个value、={=或=[=。循环的退出点是读取到=END_DOCUMENT=时。
+最后， ~JsonReader~ 的核心解析代码 ~parse()~ 就是负责从 ~TokenReader~ 中不断读取Token，根据当前状态操作，然后设定下一个Token期望的状态，如果与期望状态不符，则JSON的格式无效。起始状态被设定为 ~STATUS_EXPECT_SINGLE_VALUE | STATUS_EXPECT_BEGIN_OBJECT | STATUS_EXPECT_BEGIN_ARRAY~ ，即期望读取到单个value、 ~{~ 或 ~[~ 。循环的退出点是读取到 ~END_DOCUMENT~ 时。
