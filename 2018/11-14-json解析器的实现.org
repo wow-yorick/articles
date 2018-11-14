@@ -1,0 +1,54 @@
+* json解析器的实现
+  
+json 是一种轻量级的数据交换格式，易于阅读和编写，也很容易被机器解析。一系列的优点使它在众多的数据交换格式中脱颖而出。是目前web开发中最受喜爱的数据交互格式
+
+#+BEGIN_SRC json
+{"姓名": "张三", "年龄": "18"}
+#+END_SRC
+
+#+BEGIN_SRC json
+[
+    { 
+    "姓名": "张三",          
+    "年龄":"18"    
+    },
+
+    {        
+    "姓名": "里斯",          
+    "年龄":"19"   
+
+    }
+]
+#+END_SRC
+
+** json 包含的数据类型
+   | JSON                    | JAVA                   |
+   |-------------------------+------------------------|
+   | string                  | 	Java中的String     |
+   | number	              | Java中的Long或Double   |
+   | true/false	          | Java中的Boolean        |
+   | null	                | Java中的null           |
+   | [array]	             | Java中的List或Object[] |
+   | {“key”:”value”}	 | Java中的Map            |
+
+** json 中格式的定义
+| token           | 	含义             |
+|-----------------+----------------------|
+| NULL	        | null                 |
+| NUMBER	      | 数字                 |
+| STRING	      | 字符串               |
+| BOOLEAN	     | true/false           |
+| SEP_COLON	   | :                    |
+| SEP_COMMA	   | ,                    |
+| BEGIN_OBJECT    | 	{                |
+| END_OBJECT	  | }                    |
+| BEGIN_ARRAY	 | [                    |
+| END_ARRAY	   | ]                    |
+| END_DOCUMENT    | 	表示JSON数据结束 |
+
+** 解析思路
+由于JSON的Object和Array可以嵌套，在读取过程中，使用一个栈来存储Object和Array是必须的。每当我们读到一个~BEGIN_OBJECT~时，就创建一个~Map~并压栈；每当读到一个~BEGIN_ARRAY~时，就创建一个~List~并压栈；每当读到一个~END_OBJECT~和~END_ARRAY~时，就弹出栈顶元素，并根据新的栈顶元素判断是否压栈。此外，读到Object的Key也必须压栈，读到后面的Value后将Key-Value压入栈顶的Map。
+
+如果读到~END_DOCUMENT~时，栈恰好只剩下一个元素，则读取正确，将该元素返回，读取结束。如果栈剩下不止一个元素，则JSON文档格式不正确。
+
+最后，~JsonReader~的核心解析代码~parse()~就是负责从~TokenReader~中不断读取Token，根据当前状态操作，然后设定下一个Token期望的状态，如果与期望状态不符，则JSON的格式无效。起始状态被设定为~STATUS_EXPECT_SINGLE_VALUE | STATUS_EXPECT_BEGIN_OBJECT | STATUS_EXPECT_BEGIN_ARRAY~，即期望读取到单个value、~{~或~[~。循环的退出点是读取到~END_DOCUMENT~时。
