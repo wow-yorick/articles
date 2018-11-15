@@ -4,4 +4,4 @@
   [[file:./images/spider-0.png]]
 
 * 调度器与各处理模块的关系
-  file:./images/spider-1.png
+  [[file:./images/spider-1.png]]
