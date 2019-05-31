@@ -1,0 +1,16 @@
+* NSQ消息编码说明
+
+#+BEGIN_SRC golang
+// decodeMessage deserializes data (as []byte) and creates a new Message
+// message format:
+// [x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x][x]...
+// |       (int64)        ||    ||      (hex string encoded in ASCII)           || (binary)
+// |       8-byte         ||    ||                 16-byte                      || N-byte
+// ------------------------------------------------------------------------------------------...
+//   nanosecond timestamp    ^^                   message ID                       message body
+//                        (uint16)
+//                         2-byte
+//                        attempts
+#+END_SRC
+
+8字节存储int64类型的消息的纳秒时间戳 + 2字节存储unit16类型的消息类别 + 16字节存储hex字符串的消息ID + N字节的消息主体
