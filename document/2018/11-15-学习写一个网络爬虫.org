@@ -5,7 +5,7 @@
 
 * 调度器与各处理模块的关系
   [[file:./images/spider-1.png]]
-  
+
 * 基本数据结构
 ~Request~ 数据的请求 ~Response~ 数据的响应 ~Item~ 条目结构 ~Error~ 错误的类型 包含（ 错误的类型 错误的提示信息 完整的错误提示信息）
 
@@ -16,13 +16,13 @@
 - ~Score() uint64~ 获取当前组件的评分
 - ~SetScore(score unit64)~ 设置当前组件的评分
 - ~ScoreCalculator() CalculateScore~ 获取评分计算器
-- ~CalledCount() uint64~ 获取当前组件被调用的计数 
+- ~CalledCount() uint64~ 获取当前组件被调用的计数
 - ~AcceptedCount() uint64~ 接受调用的次数
 - ~CompletedCount() uint64~ 成功完成的调用计数
 - ~HandlingNumber() uint64~ 正在处理的调用数
 - ~Counts() Counts~ 获取所有的计数信息
 - ~Summary() SummaryStruct~ 获取组件摘要
-  
+
 *** 序列号生成器的接口设计 ~SNGenertor~
 - ~Start() unit64~ 获取预设的最小序列号
 - ~Max() unit64~ 获取预设的最大序列号
@@ -32,7 +32,7 @@
 
 组件ID的构成及生成方法
 [[file:./images/spider-2.png]]
-  
+
 
 ** 下载器
 #+BEGIN_SRC go
@@ -101,4 +101,3 @@ Summary() SchedSummary
 
 *** 调度器的状态转换
 [[file:./images/spider-3.png]]
-
