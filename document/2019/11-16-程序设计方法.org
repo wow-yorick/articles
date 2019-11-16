@@ -1,0 +1,40 @@
+* 程序设计方法
+
+1. 定义函数的名字 输入数据的定义 函数合约、头部和用途
+2. 构造使用函数的例子
+3. 设计与数据定义相符的函数模板
+
+** 设计自引用数据定义的函数
+要使递归的数据定义有意义,必须满足两个条件:
+1. 该定义必须至少含有两条子句；
+2. 其中至少一条子句不能引用定义自身；
+
+#+begin_src scheme
+   
+  (define (fun-for-los a-list-of-symbol)
+  (cond
+  [(empty? a-list-of-symbols) ...]
+  [else ... (first a-list-of-symbol) ...
+  ... (fun-for-los (rest a-list-of-symbols)) ...]))
+
+#+end_src
+
+主体 : 设计主体从不包含自然递归的那些cond子句开始. 对应的答案一般已由例子给出
+然后再来处理那些包含自引用的情况 首先，考虑模板中每个表达式计算什么
+eg:
+#+begin_src scheme
+(define (how-many a-list-of-symbols)
+(cond
+[(empty? a-list-of-symbols) 0]
+[else (+ (how-many (cdr a-list-of-symbols)) 1)]))
+
+#+end_src
+
+| 阶段                     | 目标   | 活动         |
+|--------------------------+--------+--------------|
+| 数据分析和设计           | 阐数定 | 设计数据定义 |
+| 合约，用途说明和函数头部 |        |              |
+| 例子                     |        |              |
+| 模版                     |        |              |
+| 主体                     |        |              |
+| 测试                    |        |              |
