@@ -1,0 +1,70 @@
+* ~&~ 位与
+** 给定2个操作数a,b 当且仅当 a=b=1 时结果为1  否则为0
+** 可用于将整数的指定位清零
+#+begin_src go
+  func main() {
+      var x uint8 = 0xAC // x=10101100
+      x &= 0xF0 // x= 10100000
+  }
+#+end_src
+** 通过 ~&~ 判断一个数为奇数(~odd~)还是偶数(~even~)
+*** 将数字和值1做 ~&~ 如果结果是1,就说明原来的数字是奇数
+* ~|~ 位或
+** 给定两个操作数 a,b 当且仅当a 和b都为0时结果为0 否则为 1
+** 可以将一个整数中指定位置为1
+** 对一个数字使用掩码技术
+** 使用位作为配置信息如 linux的权限 1,2,4
+
+* ~^~ 操作符
+** 给定两个操作数 a,b 当且仅当 a!=b时 结果返回1 否则返回0
+** 可以用来切换指定位上的值(数字进行翻转 0变为1  1变为0)
+#+begin_src go
+ func main() {
+    var a uint16 = 0xCEFF
+    a ^= 0xFF00 // same a = a ^ 0xFF00
+}
+// a = 0xCEFF   (11001110 11111111)
+// a ^=0xFF00   (00110001 11111111)
+#+end_src
+
+** 比较两个数字正负号是否相同 如果 ~(a ^ b) >= 0~ 那么a和b同号,如果 ~(a ^ b) < 0~ 那么a和b异号
+** 使用 ~^~ 作为位非操作 go中 ~^x=1^x~ 将会反转x的位,可以通过 ~^a~ 来计算变量 ~a~ 的补码
+
+* ~&^~ 运算符
+** ~&^~ 运算符叫做 ~AND NOT~ 。它是一个 使用 ~AND~ 后，再使用 ~NOT~ 操作的简写
+#+begin_src 
+Given operands a,b
+AND_NOT(a, b) = AND(a, NOT(b))
+// 给定两个操作数 a,b        
+// 当 a=NOT(b)=1 时，操作 AND_NOT(a, b) 返回 1。
+// 否则返回 0。
+#+end_src
+** 如果第二个操作符返回1 那么该位将会清零
+#+begin_src example
+AND_NOT(a, 1) = 0; clears a
+AND_NOT(a, 0) = a;
+#+end_src
+
+* ~<<~ 和 ~>>~ 运算符
+** 用来代表左移或者右移运算
+#+begin_note
+Given integer operands a and n,
+a << n; 将 a 中的所有位向左偏移 n 次
+a >> n; 将 a 中的所有位向右偏移 n 次
+#+end_note
+
+#+begin_src go :imports '("fmt")
+func main() {
+    var a int8 = 3
+    fmt.Printf("%08b\n", a)
+    fmt.Printf("%08b\n", a<<1)
+    fmt.Printf("%08b\n", a<<2)
+    fmt.Printf("%08b\n", a<<3)
+}
+// prints:
+//00000011
+//00000110
+//00001100
+//00011000
+#+end_src
+** 每次的位移都是乘或者除2次幂
