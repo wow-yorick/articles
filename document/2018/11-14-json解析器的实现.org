@@ -1,4 +1,8 @@
 * json解析器的实现
+:PROPERTIES:
+:id: 60f7d216-d0c0-48bb-9fd8-90f7e789df62
+:collapsed: true
+:END:
   
 json 是一种轻量级的数据交换格式，易于阅读和编写，也很容易被机器解析。一系列的优点使它在众多的数据交换格式中脱颖而出。是目前web开发中最受喜爱的数据交互格式
 
@@ -20,8 +24,10 @@ json 是一种轻量级的数据交换格式，易于阅读和编写，也很容
     }
 ]
 #+END_SRC
-
 ** json 包含的数据类型
+:PROPERTIES:
+:collapsed: true
+:END:
    | JSON                    | JAVA                   |
    |-------------------------+------------------------|
    | string                  | 	Java中的String     |
@@ -30,7 +36,6 @@ json 是一种轻量级的数据交换格式，易于阅读和编写，也很容
    | null	                | Java中的null           |
    | [array]	             | Java中的List或Object[] |
    | {“key”:”value”}	 | Java中的Map            |
-
 ** json 中格式的定义
 | token           | 	含义             |
 |-----------------+----------------------|
@@ -45,7 +50,6 @@ json 是一种轻量级的数据交换格式，易于阅读和编写，也很容
 | BEGIN_ARRAY	 | [                    |
 | END_ARRAY	   | ]                    |
 | END_DOCUMENT    | 	表示JSON数据结束 |
-
 ** 解析思路
 由于JSON的Object和Array可以嵌套，在读取过程中，使用一个栈来存储Object和Array是必须的。每当我们读到一个 ~BEGIN_OBJECT~ 时，就创建一个 ~Map~ 并压栈；每当读到一个 ~BEGIN_ARRAY~ 时，就创建一个 ~List~ 并压栈；每当读到一个 ~END_OBJECT~ 和 ~END_ARRAY~ 时，就弹出栈顶元素，并根据新的栈顶元素判断是否压栈。此外，读到Object的Key也必须压栈，读到后面的Value后将Key-Value压入栈顶的Map。
 

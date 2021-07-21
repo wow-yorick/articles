@@ -9,3 +9,10 @@
 
 * 笔记
 ** 流水线的吞吐率是指单位时间流水线处理的任务数,流水线的吞吐率是最长流水段操作时间
+
+#+begin_src php
+  function hello() {
+      print_r("abc");
+      echo "xx";
+  }
+#+end_src
