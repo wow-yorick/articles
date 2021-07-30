@@ -5,9 +5,6 @@
 #+DATE: <2021-07-30 Fri>
 #+OPTIONS: ^:{}
 
-第一段
-
-第二段 [[http://www.baidu.com][链接]]
 
 #+begin_example
 [[链接][说明]]
@@ -15,7 +12,14 @@
 =高亮=
 <s + <tab> 插入源码块
 
+~code~
 #+end_example
+
++ checkbox ~- [ ]~  改变状态 =C-c C-c=
++ 变更列表条目 =C-c -=  或相反 =C-c *=
++ todo  =C-c C-t=  变更状态  =S-left= =S-right=
++ 百分比记录 ~[/]~ =[%]=
+
 
 * 必要条件
 v8.2.10(或更新) =C-h v <RET> org-version=
@@ -143,7 +147,6 @@ v8.2.10(或更新) =C-h v <RET> org-version=
 
 输入 =C-c C-v t= 生成 double-space.rb
 
-
 * 变量
 
   #+HEADER: :var b=3 c=4 e=79 :var g=44
@@ -252,3 +255,4 @@ ls -al
 ** 嵌入运算结果
 
 src_ruby{5+6} {{{results(=11=)}}}
+
