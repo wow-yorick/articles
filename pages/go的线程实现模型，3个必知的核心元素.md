@@ -1,3 +1,3 @@
 - M：machine 一个M代表一个内核线程，或称“工作线程”
 - P：processor 一个P代表执行一个Go代码片段所必须的资源(上下文环境)
-- G
+- G：goroutine 一个G代表一个Go代码片段
