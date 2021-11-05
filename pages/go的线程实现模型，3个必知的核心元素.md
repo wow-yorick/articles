@@ -1,1 +1,1 @@
-- M：machine 一个M
+- M：machine 一个M代表一个内核线程，或称“工作线程”
