@@ -268,3 +268,51 @@ LABEL org.opencontainers.image.authors="runoob"
 *** 使用Dockerfile定义运用程序的环境
 *** 使用docker-compose.yml定义构成运用程序的服务，这样它们可以在隔离的环境中一起运行
 *** 最后，执行docker-compose up 命令启动并运行整个运用程序
+** yml配置指令参考
+*** version
+**** 指定本 yml 依从的 compose 哪个版本制定的
+*** build
+**** 指定为构建镜像上下文路径：
+例如 webapp 服务，指定为从上下文路径 ./dir/Dockerfile 所构建的镜像：
+
+#+BEGIN_SRC yml
+version: "3.7"
+services:
+  webapp:
+    build: ./dir
+
+#+END_SRC
+**** 作为具有在上下文指定的路径的对象，以及可选的 Dockerfile 和 args：
+
+#+BEGIN_SRC yml
+version: "3.7"
+services:
+  webapp:
+    build:
+      context: ./dir
+      dockerfile: Dockerfile-alternate
+      args:
+        buildno: 1
+      labels:
+        - "com.example.description=Accounting webapp"
+        - "com.example.department=Finance"
+        - "com.example.label-with-empty-value"
+      target: prod
+
+#+END_SRC
+***** context: 上下文路径
+***** dockerfile: 指定构建镜像的dockerfile文件名
+***** args: 添加构建参数，这是只能在构建过程中访问的环境变量
+***** labels: 设置构建镜像的标签
+***** target: 多层构建，可以指定构建哪一层
+*** cap_add, cap_drop 
+添加或删除容器拥有的宿主机内核功能
+
+#+BEGIN_SRC yml
+cap_add:
+  - ALL # 开启全部权限
+
+cap_drop:
+  - SYS_PTRACE # 关闭 ptrace权限
+#+END_SRC
+***
