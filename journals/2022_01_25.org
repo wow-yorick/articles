@@ -1,0 +1,51 @@
+* [[Jan 24th, 2022]]
+* P and b
+
+#+BEGIN_SRC lisp
+(interactive "P\nbFrobnicate buffer: ")
+#+END_SRC
+** *P* 把第一个参数设置为 =raw command perfix=
+** b 提示用户输入一个 buffer 的名字
+** n 以一个数字为参数
+** r 表示这个函数要接受当前选中区域的开始和结束位置
+
+#+BEGIN_SRC lisp
+(defun myMark-elisp-region (rStart rEnd)
+  "Mark region as Elisp source code for org mode export."
+  (interactive "r")
+  (message "Region begin at: %d, end at: %d" rStart rEnd)
+  (save-excursion
+    (goto-char rEnd) (insert "\n#+END_SRC\n")
+    (goto-char rStart) (insert "#+BEGIN_SRC emacs-lisp -n\n")))
+#+END_SRC
+** a 函数名
+
+#+BEGIN_SRC lisp
+(defun call-a-func (x)
+  (interactive "aEnter a function:")
+  (funcall x))
+#+END_SRC
+** s 字符串
+** 传递一个list
+
+#+BEGIN_SRC lisp
+(defun do-something (x y)
+  "Ask name and age"
+  (interactive
+   ;; complex code here that returns a list
+   (list "Mary" 22))
+  (message "Name is: %s, Age is: %d" x y))
+#+END_SRC
+
+
+#+BEGIN_SRC lisp
+(defun ff (name age)
+  "Prompt user to enter a string, with input history support."
+  (interactive
+   (list
+    (read-string "Enter your name:")
+        (read-string "Enter your age:")))
+  (message "Name is %s." name)
+  (message "Age is: %s" age))
+#+END_SRC
+*
