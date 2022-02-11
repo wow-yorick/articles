@@ -316,3 +316,10 @@ cap_drop:
   - SYS_PTRACE # 关闭 ptrace权限
 #+END_SRC
 ***
+* docker样例
+** 运行composer
+
+
+#+BEGIN_SRC shell
+alias composer2="docker run --rm -i --entrypoint /usr/bin/composer -w /usr/src/app --volume $PWD:/usr/src/app -v ~/.composer:/root/.composer -v ~/.ssh:/root/.ssh:ro composer:latest"
+#+END_SRC

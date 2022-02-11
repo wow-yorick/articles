@@ -1,0 +1,12 @@
+* mac 安装老版本php
+
+#+BEGIN_SRC shell
+brew tap shivammathur/php
+brew install shivammathur/php/php@7.2
+brew link --overwrite --force shivammathur/php/php@7.2
+#+END_SRC
+* 安装扩展
+
+#+BEGIN_SRC shell
+pecl install redis
+#+END_SRC
