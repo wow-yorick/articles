@@ -1,10 +1,23 @@
-* cargo创建项目
+* cargo相关
+:PROPERTIES:
+:collapsed: true
+:END:
+** cargo创建项目
 
 #+BEGIN_SRC shell
 cargo new project_name --vcs=git
 #+END_SRC
-* cargo build  编译项目
-* cargo run, 编译代码+执行结果
-* cargo check  检查代码，确保能通过编译，不产生可执行文件
-* cargo build --release 为发布构建
+** cargo build  编译项目
+** cargo run, 编译代码+执行结果
+** cargo check  检查代码，确保能通过编译，不产生可执行文件
+** cargo build --release 为发布构建
 会在target/release目录下
+** cargo update 更新依赖的索引?
+* 语言相关
+** trait 相当于其他语言中的接口
+** 随机数生成
+
+#+BEGIN_SRC rust
+let secret_number = rand::thread_rng().gen_range(1,101)
+#+END_SRC
+*** 包含1 不包含101
