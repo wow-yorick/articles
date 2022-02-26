@@ -1,4 +1,15 @@
+* 存在原因
+:PROPERTIES:
+:collapsed: true
+:END:
+** 跟踪代码哪些部分正在使用heap的哪些数据
+** 最小化heap上的重复数据
+** 清理heap上未使用的数据以避免空间不足
+** 一旦懂了所有权，就不需要经常去想stack 或 heap
 * 规则
+:PROPERTIES:
+:collapsed: true
+:END:
 ** Rust 中的每一个值都有一个被称为其 所有者（owner）的变量。
 ** 值在任一时刻有且只有一个所有者。
 ** 当所有者（变量）离开作用域，这个值将被丢弃。
