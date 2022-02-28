@@ -1,0 +1,221 @@
+* 定义枚举：列举可能的 ~成员~ 来定义一个类型
+:PROPERTIES:
+:collapsed: true
+:END:
+** 定义枚举
+
+#+BEGIN_SRC rust
+enum IpAddrKind {
+V4,
+V6,
+}
+#+END_SRC
+*** ~v4~ 和 ~v6~ 被称为枚举的 ~成员~
+** 枚举值
+*** 创建成员实例
+
+#+BEGIN_SRC rust
+let four = IpAddrKind::V4;
+#+END_SRC
+*** 定义一个函数来获取任何 ~IpAddrKind~
+
+#+BEGIN_SRC rust
+fn route(ip_kind: IpAddrKind){}
+#+END_SRC
+*** 调用这个函数
+
+#+BEGIN_SRC rust
+route(IpAddrKind::V4);
+#+END_SRC
+*** 优势：仅仅使用枚举并将数据直接放进每一个枚举成员而不是将枚举作为结构体的一部分
+
+#+BEGIN_SRC rust
+enum IpAddr {
+V4(String),
+V6(String),
+}
+let home = IpAddr::V4(String::from("127.0.0.1"));
+let loopback = IpAddr::V6(String::form("::1"))
+#+END_SRC
+*** 优势：每个成员可以处理不同类型和数量的数据
+
+#+BEGIN_SRC rust
+enum IpAddr {
+        V4(u8, u8, u8, u8),
+        V6(String),
+    }
+
+    let home = IpAddr::V4(127, 0, 0, 1);
+
+    let loopback = IpAddr::V6(String::from("::1"));
+#+END_SRC
+*** 标准库中对ip的一个定义
+
+#+BEGIN_SRC rust
+struct Ipv4Addr {
+    // --snip--
+}
+
+struct Ipv6Addr {
+    // --snip--
+}
+
+enum IpAddr {
+    V4(Ipv4Addr),
+    V6(Ipv6Addr),
+}
+#+END_SRC
+*** 另一个例子
+:PROPERTIES:
+:collapsed: true
+:END:
+
+#+BEGIN_SRC rust
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+#+END_SRC
+**** 和定义多个不同类型的结构体的方式对比，其所有成员都被组合在一起位于 Message 类型下
+
+#+BEGIN_SRC rust
+struct QuitMessage; // 类单元结构体
+struct MoveMessage {
+    x: i32,
+    y: i32,
+}
+struct WriteMessage(String); // 元组结构体
+struct ChangeColorMessage(i32, i32, i32); // 元组结构体
+#+END_SRC
+*** 和结构体相似，可以使用 ~impl~ 在枚举上定义方法
+
+#+BEGIN_SRC rust
+    impl Message {
+        fn call(&self) {
+            // 在这里定义方法体
+        }
+    }
+
+    let m = Message::Write(String::from("hello"));
+    m.call();
+#+END_SRC
+*** 空值是一个因为某种原因目前无效或缺失的值
+*** Option枚举包含在prelude中，不用显示引入作用域，可以不用 ~Option::~ 前缀来直接使用 ~Some~ 和 ~None~
+*** ~Option<T>~ 和 ~T~ 是不同类型。 不允许像一个肯定有效的值那样使用 ~Option<T>~
+*** 当在Rust中拥有一个像 ~i8~ 这样类型的值时，可以确保它总是有一个有效的值。可以自信使用而无需做空值检查
+* match控制流运算符
+** 模式可由字面值、变量、通配符和许多其他内容构成
+
+#+BEGIN_SRC rust
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
+#+END_SRC
+** 绑定值的模式
+*** 可以绑定匹配的模式的部分值
+
+#+BEGIN_SRC rust
+#[derive(Debug)] // 这样可以立刻看到州的名称
+enum UsState {
+    Alabama,
+    Alaska,
+    // --snip--
+}
+
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Penny => 1,
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("State quarter from {:?}!", state);
+            25
+        }
+    }
+}
+#+END_SRC
+*** 匹配Option<T>
+
+#+BEGIN_SRC rust
+fn plus_one(x: Option<i32>) -> Option<i32> {
+        match x {
+            None => None,
+            Some(i) => Some(i + 1),
+        }
+    }
+
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+#+END_SRC
+*** 匹配Some<T>
+**** Rust 代码中看到很多这样的模式：match 一个枚举，绑定其中的值到一个变量，接着根据其值执行代码。
+
+#+BEGIN_SRC rust
+Some(i) => Some(i + 1),
+#+END_SRC
+*** 匹配是穷尽的
+**** 必须穷举到最后的可能性来使代码有效。
+*** 通配模式和 _ 占位符
+
+#+BEGIN_SRC rust
+let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn move_player(num_spaces: u8) {}
+#+END_SRC
+**** 对于前两个分支，匹配模式是字面值 3 和 7，最后一个分支则涵盖了所有其他可能的值，模式是我们命名为 other 的一个变量。other 分支的代码通过将其传递给 move_player 函数来使用这个变量。
+**** 必须将通配分支放在最后，因为模式是按顺序匹配的
+**** 当我们不想使用通配模式获取的值时，请使用 _ ，这是一个特殊的模式，可以匹配任意值而不绑定到该值。
+
+#+BEGIN_SRC rust
+ let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => reroll(),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+    fn reroll() {}
+#+END_SRC
+***** #+BEGIN_SRC rust
+let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        _ => (),
+    }
+
+    fn add_fancy_hat() {}
+    fn remove_fancy_hat() {}
+#+END_SRC
+****** 我们明确告诉 Rust 我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。
+*
