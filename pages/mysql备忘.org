@@ -8,3 +8,8 @@
 *** ~Threads_connected~ ：这个数值指的是打开的连接数.
 *** ~Threads_running~ ：这个数值指的是激活的连接数，这个数值一般远低于connected数值.
 *** ~Threads_connected~ 跟 ~show processlist;~ 结果相同，表示当前连接数。准确的来说, ~Threads_running~ 是代表当前并发数
+* 查询表结构
+
+#+BEGIN_SRC sql
+select  column_name, column_comment,data_type from information_schema.columns where  table_name = 'merchant_source' ORDER BY ordinal_position;
+#+END_SRC
