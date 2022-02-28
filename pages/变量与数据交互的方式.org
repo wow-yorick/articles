@@ -1,4 +1,7 @@
 * 移动
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC rust
 let x = 5;
     let y = x;
@@ -12,6 +15,9 @@ let x = 5;
 #+END_SRC
 *** 报错：因为s2指针指向了s1对应的堆栈，同时使s1失效，即： ~s1~ 被 *移动* 到了 ~s2~
 * 只在栈上的数据：拷贝, 固定长度的数据
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC rust
     let x = 5;
     let y = x;
@@ -19,3 +25,22 @@ let x = 5;
     println!("x = {}, y = {}", x, y);
 #+END_SRC
 * 可变数据，存储在堆上，需要使用 ~.clone()~ 进行数据克隆
+* 一些拥有Copy trait 的类型
+:PROPERTIES:
+:collapsed: true
+:END:
+** 任何简单标量的组合类型都可以是copy的
+** 任何需要分配内存或某种资源的都不是copy的
+** 一些拥有 Copy trait 的类型：
+*** 所有的整数类型，如：u32
+*** bool
+*** char
+*** 所有的浮点类型： 如 f64
+*** Tuple(元组)，如果其所有的字段都是Copy的
+**** [i32,i32] 是
+**** [i32,String] 不是
+* 返回值与作用域
+** 函数在返回值的过程中同样也会发生所有权的转移
+** 一个变量的所有权总是遵循同样的模式：
+*** 把一个值赋给其他变量时就会发生移动
+*** 当一个包含heap数据的变量离开作用域时，它的值就会被drop函数清理，除非数据的所有权移动到另一个变量上了
