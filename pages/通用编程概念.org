@@ -1,3 +1,4 @@
+* 表达式产生一个值，语句执行一个动作，不一定产生值
 * 变量与可变性
 :PROPERTIES:
 :collapsed: true

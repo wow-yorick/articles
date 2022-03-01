@@ -106,6 +106,9 @@ struct ChangeColorMessage(i32, i32, i32); // 元组结构体
 *** ~Option<T>~ 和 ~T~ 是不同类型。 不允许像一个肯定有效的值那样使用 ~Option<T>~
 *** 当在Rust中拥有一个像 ~i8~ 这样类型的值时，可以确保它总是有一个有效的值。可以自信使用而无需做空值检查
 * match控制流运算符
+:PROPERTIES:
+:collapsed: true
+:END:
 ** 模式可由字面值、变量、通配符和许多其他内容构成
 
 #+BEGIN_SRC rust
@@ -218,4 +221,15 @@ let dice_roll = 9;
     fn remove_fancy_hat() {}
 #+END_SRC
 ****** 我们明确告诉 Rust 我们不会使用与前面模式不匹配的值，并且这种情况下我们不想运行任何代码。
-*
+* if let 简单控制流
+:PROPERTIES:
+:collapsed: true
+:END:
+** 处理只匹配一个模式的值而忽略其他模式的情况
+
+#+BEGIN_SRC rust
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
+    }
+#+END_SRC
