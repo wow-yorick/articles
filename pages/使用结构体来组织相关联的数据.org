@@ -53,3 +53,8 @@ impl Rectangle {
 #+END_SRC
 * 多个 impl 块
 ** 每个结构体都允许拥有多个 impl 块
+* 一些常用信息
+** std::fmt::Display
+** std::fmt::Debug
+** {:?}
+** {:#?}
