@@ -17,4 +17,7 @@ select  column_name, column_comment,data_type from information_schema.columns wh
 select * from benefit WHERE ext_attr->'$.category' like '%CARDD %';
 -- 更新字段
 UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=10010235;
+
+-- 时间格式化
+date_format( created_at, '%Y-%m-%d' ) as days
 #+END_SRC
