@@ -1,7 +1,4 @@
 * cargo相关
-:PROPERTIES:
-:collapsed: true
-:END:
 ** cargo创建项目
 
 #+BEGIN_SRC shell
