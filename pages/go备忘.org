@@ -1,0 +1,20 @@
+* csv read
+
+#+BEGIN_SRC go
+    ans := strings.NewReader(string(someData))
+	br := csv.NewReader(ans)
+	for {
+		line, err := br.Read()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Error(err)
+			break
+		}
+		l, c := br.FieldPos(0) //l 为从一开始的行号，c 为从一开始的字节数
+		if l == 1 {
+			line[0] = strings.TrimPrefix(line[0], "\xEF\xBB\xBF")
+		}
+     }
+#+END_SRC
