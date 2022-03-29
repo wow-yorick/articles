@@ -1,0 +1,157 @@
+* 可恢复错误
+** Result枚举
+
+#+BEGIN_SRC rust
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+
+let f = File::open("hello.txt");
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => panic!("Problem opening the file: {:?}", error),
+    };
+#+END_SRC
+** 匹配不同错误
+
+#+BEGIN_SRC rust
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open("hello.txt");
+
+    let f = match f {
+        Ok(file) => file,
+        Err(error) => match error.kind() {
+            ErrorKind::NotFound => match File::create("hello.txt") {
+                Ok(fc) => fc,
+                Err(e) => panic!("Problem creating the file: {:?}", e),
+            },
+            other_error => {
+                panic!("Problem opening the file: {:?}", other_error)
+            }
+        },
+    };
+}
+
+#+END_SRC
+
+
+#+BEGIN_SRC rust
+// 闭包的例子
+use std::fs::File;
+use std::io::ErrorKind;
+
+fn main() {
+    let f = File::open("hello.txt").unwrap_or_else(|error| {
+        if error.kind() == ErrorKind::NotFound {
+            File::create("hello.txt").unwrap_or_else(|error| {
+                panic!("Problem creating the file: {:?}", error);
+            })
+        } else {
+            panic!("Problem opening the file: {:?}", error);
+        }
+    });
+}
+#+END_SRC
+** 失败时panic的简写 unwrap和expect
+
+#+BEGIN_SRC rust
+use std::fs::File;
+
+fn main() {
+    let f = File::open("hello.txt").unwrap();
+}
+#+END_SRC
+
+
+#+BEGIN_SRC rust
+// 指定panic 的信息
+use std::fs::File;
+
+fn main() {
+    let f = File::open("hello.txt").expect("Failed to open hello.txt");
+}
+#+END_SRC
+** 传播错误
+
+#+BEGIN_SRC rust
+use std::fs::File;
+use std::io::{self, Read};
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let f = File::open("hello.txt");
+
+    let mut f = match f {
+        Ok(file) => file,
+        Err(e) => return Err(e),
+    };
+
+    let mut s = String::new();
+
+    match f.read_to_string(&mut s) {
+        Ok(_) => Ok(s),
+        Err(e) => Err(e),
+    }
+}
+#+END_SRC
+** 传播错误的简写：*？运算符*
+
+#+BEGIN_SRC rust
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut f = File::open("hello.txt")?;
+    let mut s = String::new();
+    f.read_to_string(&mut s)?;
+    Ok(s)
+}
+#+END_SRC
+
+
+#+BEGIN_SRC rust
+use std::fs::File;
+use std::io;
+use std::io::Read;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    let mut s = String::new();
+
+    File::open("hello.txt")?.read_to_string(&mut s)?;
+
+    Ok(s)
+}
+
+#+END_SRC
+** 直接用内置方法(打开文件、新建一个 String、读取文件的内容，并将内容放入 String，接着返回它)
+
+#+BEGIN_SRC rust
+use std::fs;
+use std::io;
+
+fn read_username_from_file() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
+}
+#+END_SRC
+* 不可恢复错误
+:PROPERTIES:
+:collapsed: true
+:END:
+** panic 默认展开，会回溯栈并清理每一个遇到的函数的数据
+** 直接选择终止(打包的二进制文件小) 不清理直接退，由操作系统清理程序所使用的内存
+
+#+BEGIN_SRC rust
+[profile.release]
+panic = 'abort'
+
+#+END_SRC
+* 阅读^^backtrace^^ : 关键是从头开始读直到发现你编写的文件。这就是问题的发源地。这一行往上是你的代码所调用的代码；往下则是调用你的代码的代码。
+
+#+BEGIN_SRC shell
+RUST_BACKTRACE=1 cargo run // 打印详细栈
+// 必须启用 debug 标识。当不使用 --release 参数运行 cargo build 或 cargo run 时 debug 标识会默认启用
+#+END_SRC
