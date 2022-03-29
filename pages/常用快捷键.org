@@ -1,0 +1,9 @@
+* Mac
+
+#+BEGIN_SRC mac
+Shift-Command-5  录制截屏
+Shift-Command-3 捕捉整个屏幕
+Shift-Command-4 捕捉屏幕一部分
+按下 Shift-Command-4，然后按下空格键。将相机指针移到窗口或菜单栏上方以高亮显示该区域，然后点按。
+ Shift-Command-6 捕捉触控栏
+#+END_SRC
