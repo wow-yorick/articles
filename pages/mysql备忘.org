@@ -30,4 +30,7 @@ UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=1001
 
 -- 时间格式化
 date_format( created_at, '%Y-%m-%d' ) as days
+
+-- delete语句
+DELETE FROM table_name [WHERE Clause]
 #+END_SRC
