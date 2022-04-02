@@ -7,7 +7,7 @@ Shift-Command-4 捕捉屏幕一部分
 按下 Shift-Command-4，然后按下空格键。将相机指针移到窗口或菜单栏上方以高亮显示该区域，然后点按。
  Shift-Command-6 捕捉触控栏
 #+END_SRC
-*** 终端
+** 终端
 
 #+BEGIN_SRC key
 Control+Tab 切换标签页
@@ -15,3 +15,5 @@ Command + n 新窗口
 Command + t 新标签页
 Command + w 关闭标签页
 #+END_SRC
+** 删除无法正常移除的应用
+呼出Spotlight（ctrl+space），搜索需要删除的应用名字，在结果最下面选择“在finder中显示”，在打开的finder列表中把应用拖到垃圾桶删除，注意删除目标在搜索结果中类型是“应用”
