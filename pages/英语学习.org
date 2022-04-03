@@ -1,0 +1,58 @@
+* 英语记忆
+:PROPERTIES:
+:collapsed: true
+:END:
+** 元音大推移
+*** 元音互换，增减
+** 维尔纳定律
+*** U= V =W (字母 u 和 w 由v派生)
+**** 词根 nov = new
+**** vol = will 志愿
+*** b = p = m = f = v
+**** bene = fine = 好
+**** 词根 fin 尖； 结束 --- fine 好
+**** 词根 fin 尖;结束 = pen 钢笔
+*** g =k (c) = h
+**** cat 猫 [k..t]
+*** m = n = l = r
+**** sun 太阳 = summer 夏天 = sol 词根
+**** sam sem sim syn sy sym syl 相同 一致
+*** d = t = S (c) = th
+**** vit vis vid wis wit 看
+*** 其他音变
+**** v = s =d   have has had
+**** s = z   ise 英式 = ize 美式
+**** g = j   gab 嘲笑 jibe 嘲笑
+**** g = y garden 花园 yard 院子
+**** s = h semi 一半  hemi 一半
+** R音位移
+** 萨宾L
+** 格林定律
+** 像形字母记忆
+*** A = 牛角
+*** B = 房子
+*** br = 两个
+* 词缀
+:PROPERTIES:
+:collapsed: true
+:END:
+** 后缀
+*** al 形容词后缀
+*** ance 名词后缀
+*** ist 人
+*** ity 名词后缀
+*** ite 形容词后缀
+*** itude 状态
+*** ed 形容词后缀
+*** tion 名词后缀
+*** tive 形容词后缀
+*** ness 名词后缀
+***
+** 前缀
+*** in 无
+*** con 全部
+*** de 加强
+***
+***
+* 快速记忆必须是强关联强逻辑，只有知道为什么才最重要，才是从逻辑规律去理解，真正理解了，才能放弃死记硬背
+* 知识是没有捷径的，但经验是有捷径的
