@@ -34,3 +34,8 @@ date_format( created_at, '%Y-%m-%d' ) as days
 -- delete语句
 DELETE FROM table_name [WHERE Clause]
 #+END_SRC
+* 知识点
+** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
+** 一个汉字占多少长度与编码有关 UTF-8 一个汉字=3个字节 一个英文一个字节
+** varchar(n) 表示n个字符，^^无论汉字和英文^^
+**
