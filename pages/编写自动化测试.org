@@ -1,0 +1,35 @@
+* 测试函数
+
+#+BEGIN_SRC rust
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn exploration() {
+        assert_eq!(2 + 2, 4);
+    }
+
+    #[test]
+    fn another() {
+        panic!("Make this test fail");
+    }
+}
+#+END_SRC
+* 使用 assert! 宏来检查结果
+* 使用 assert_eq! 和 assert_ne! 宏来测试相等
+* 通常可以直接在结构体或枚举上添加 #[derive(PartialEq, Debug)] 注解。
+* 使用 should_panic 检查 panic
+* 将 Result<T,E>用于测试
+
+#+BEGIN_SRC rust
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() -> Result<(), String> {
+        if 2 + 2 == 4 {
+            Ok(())
+        } else {
+            Err(String::from("two plus two does not equal four"))
+        }
+    }
+}
+#+END_SRC

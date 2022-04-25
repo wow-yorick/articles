@@ -3,3 +3,198 @@
 ** 可以通过 =impl= 声明
 ** 可通过方法定义声明
 ** 编译时使用具体类型，将通用代码转换为特定代码
+* trait: 定义共享的行为
+:PROPERTIES:
+:collapsed: true
+:END:
+** 定义trait
+
+#+BEGIN_SRC rust
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
+#+END_SRC
+** 实现trait
+
+#+BEGIN_SRC rust
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
+
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
+    }
+}
+
+pub struct Tweet {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub retweet: bool,
+}
+
+impl Summary for Tweet {
+    fn summarize(&self) -> String {
+        format!("{}: {}", self.username, self.content)
+    }
+}
+
+#+END_SRC
+*** 只有当至少一个 trait 或者要实现 trait的类型位于crate的本地作用域时，才能为该类型实现trait-- 相干性  确保其他人编写的代码不会破坏你的代码
+** 使用trait
+
+#+BEGIN_SRC rust
+use aggregator::{Summary, Tweet};
+
+fn main() {
+    let tweet = Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        retweet: false,
+    };
+
+    println!("1 new tweet: {}", tweet.summarize());
+}
+#+END_SRC
+** 默认实现
+*** 无法从相同方法的重载实现中调用默认方法
+** trait 作为参数
+
+#+BEGIN_SRC rust
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+#+END_SRC
+** Trait Bound 语法
+
+#+BEGIN_SRC rust
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+#+END_SRC
+** 通过 + 指定多个 trait bound
+*** 就需要同时实现两个不同的 trait：Display 和 Summary。这可以通过 + 语法实现：
+
+#+BEGIN_SRC rust
+pub fn notify(item: &(impl Summary + Display)) {}
+pub fn notify<T: Summary + Display>(item: &T) {}
+#+END_SRC
+** 通过where简化 trait bound
+
+#+BEGIN_SRC rust
+fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {} 
+==
+fn some_function<T, U>(t: &T, u: &U) -> i32
+    where T: Display + Clone,
+          U: Clone + Debug
+{}
+#+END_SRC
+** 返回实现了trait的类型
+
+#+BEGIN_SRC rust
+fn returns_summarizable() -> impl Summary {
+    Tweet {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        retweet: false,
+    }
+}
+#+END_SRC
+** 使用trait bound 有条件的实现方法
+
+#+BEGIN_SRC rust
+use std::fmt::Display;
+
+struct Pair<T> {
+    x: T,
+    y: T,
+}
+
+impl<T> Pair<T> {
+    fn new(x: T, y: T) -> Self {
+        Self { x, y }
+    }
+}
+
+impl<T: Display + PartialOrd> Pair<T> {
+    fn cmp_display(&self) {
+        if self.x >= self.y {
+            println!("The largest member is x = {}", self.x);
+        } else {
+            println!("The largest member is y = {}", self.y);
+        }
+    }
+}
+
+#+END_SRC
+* 生命周期与引用有效性
+:PROPERTIES:
+:collapsed: true
+:END:
+** 生命周期注解并不改变任何任何引用的生命周期的长短
+** 生命周期注解描述了多个引用生命周期相互的关系，而不影响其生命周期
+** 泛型生命周期 'a 的具体生命周期等同于 x 和 y 的生命周期中较小的那一个
+** 结构体定义中的生命周期注解
+
+#+BEGIN_SRC rust
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
+fn main() {
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+    let i = ImportantExcerpt {
+        part: first_sentence,
+    };
+}
+#+END_SRC
+** 输入生命周期
+*** 每一个是引用的参数都有它自己的生命周期参数
+*** 如果只有一个输入生命周期参数，那它赋予所有输出生命周期参数
+
+#+BEGIN_SRC rust
+fn foo<'a>(x: &'a i32) -> &'a i32
+#+END_SRC
+** 输出生命周期
+*** 如果方法有多个输入生命周期参数并且其中一个参数是 &self 或 &mut self,说明是对象的方法，那么所有输出生命周期参数赋予 self的生命周期
+** 静态生命周期
+*** 所有字符串字面值都拥有 ^^'static^^ 生命周期
+** 结合泛型类型参数、trait bound 和生命周期
+
+#+BEGIN_SRC rust
+use std::fmt::Display;
+
+fn longest_with_an_announcement<'a, T>(
+    x: &'a str,
+    y: &'a str,
+    ann: T,
+) -> &'a str
+where
+    T: Display,
+{
+    println!("Announcement! {}", ann);
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+#+END_SRC
+*** 生命周期也是泛型，所以生命周期参数 'a 和泛型类型参数 T 都位于函数名后的同一尖括号列表中
+***
+**
