@@ -33,3 +33,43 @@ mod tests {
     }
 }
 #+END_SRC
+* 运行 cargo test -- --help 可以提示在分隔符 -- 之后使用的有关参数。
+
+#+BEGIN_SRC rust
+cargo test -- --test-threads=1
+cargo test -- --show-output
+cargo test one_hundred
+// 过滤运行多个测试 所包含字符的测试都会运行
+cargo test add
+// 可以通过模块名来运行一个模块中的所有测试
+
+#[test]
+#[ignore]
+fn expensive_test() {
+    // 需要运行一个小时的代码
+}
+// 只运行忽略的测试
+cargo test -- --ignored
+
+// 运行全部 包含测试的
+cargo test -- --include-ignored
+
+cargo test --test integration_test文件名
+#+END_SRC
+* 测试通过的打印内容会被截获
+*
+* 测试的组织结构(与要测试的代码共同放在src目录下相同文件中)
+
+#+BEGIN_SRC rust
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn it_works() {
+        assert_eq!(2 + 2, 4);
+    }
+}
+#+END_SRC
+* 每一个 tests 目录中的文件都被编译为单独的 crate
+* tests/common/mod.rs ，而不是创建 tests/common.rs 。这是一种 Rust 的命名规范，这样命名告诉 Rust 不要将 common 看作一个集成测试文件
+* tests 目录中的子目录不会被作为单独的 crate 编译或作为一个测试结果部分出现在测试输出中。
+* 在编写能使测试通过的代码之前编写测试有助于在开发过程中保持高测试覆盖率。
