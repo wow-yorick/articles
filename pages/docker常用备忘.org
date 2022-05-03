@@ -1,10 +1,6 @@
-* 运行一个后台运行的容器
-
-#+BEGIN_SRC shell
-docker run -itd --name <docker-name> <docker image> bash
+* docker run -itd --name <docker-name> <docker image> bash
 # example
 docker run -itd --name unbuntu library/ubuntu:latest bash
-#+END_SRC
 * 运行交互式的容器
 ** -t：在新容器内指定一个伪终端或终端
 ** -P：将容器内部使用的网络端口随机映射到我们使用的主机上。
