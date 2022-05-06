@@ -3,10 +3,20 @@
 |Binary	|2#11110101|	245|
 |Octal |	8#27	| 23 |
 |Hexadecimal |	16#FFFF |	65535|
-* (calc-word-size) 来改变字长
-* 输入两次#的方式直接输入二进制补码,比如在字长为8的情况下输入 2##11110101 则其值为-11而不是245.
+** (calc-word-size) 来改变字长
+** 输入两次#的方式直接输入二进制补码,比如在字长为8的情况下输入 2##11110101 则其值为-11而不是245.
 calc-radix 改变基数
-* (calc-leading-zeros) 来在开启leading zero功能,该功能会在较短的数字前面补上0
-* (calc-clip) 来现符号/无符号整型的切换.
-* 计算1的个数
+** (calc-leading-zeros) 来在开启leading zero功能,该功能会在较短的数字前面补上0
+** (calc-clip) 来现符号/无符号整型的切换.
+** 计算1的个数
 先输入 424242 让它入栈,然后按下 b u 将该数字拆到集合中,然后按下 v # 算出1的个数,结果是10.
+* elisp
+** (progn
+  (insert "\n")
+  (setq a 0)
+  (setq c ?A)
+  (while (< a 26)
+    (insert  (format "%d - %c\n" a c))
+    (setq a     (+ a 1))
+    (setq c      (+  c 1))
+    ))
