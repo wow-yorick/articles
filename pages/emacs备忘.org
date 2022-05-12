@@ -1,4 +1,7 @@
 * calc
+:PROPERTIES:
+:collapsed: true
+:END:
 | Description | Emacs | CalcBase 10|
 |Binary	|2#11110101|	245|
 |Octal |	8#27	| 23 |
@@ -11,7 +14,12 @@ calc-radix 改变基数
 ** 计算1的个数
 先输入 424242 让它入栈,然后按下 b u 将该数字拆到集合中,然后按下 v # 算出1的个数,结果是10.
 * elisp
-** (progn
+:PROPERTIES:
+:collapsed: true
+:END:
+** 生成 A-Z 对应索引
+#+BEGIN_SRC elisp
+(progn
   (insert "\n")
   (setq a 0)
   (setq c ?A)
@@ -20,3 +28,14 @@ calc-radix 改变基数
     (setq a     (+ a 1))
     (setq c      (+  c 1))
     ))
+#+END_SRC
+**
+* plantUML
+关系	画法
+继承	<|- -
+实现	<|. .
+依赖	<. .
+关联	<- -
+聚合	o- -
+组合	*- -
+*
