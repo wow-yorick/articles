@@ -2,5 +2,8 @@
 #+BEGIN_SRC sh
 // 查看域名属性
 nslookup www.baidu.com
+
+// brew 检查
+brew doctor --verbose
 #+END_SRC
 *
