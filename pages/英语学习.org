@@ -3,7 +3,6 @@
 *** 元音互换，增减
 ** 维尔纳定律
 :PROPERTIES:
-:collapsed: true
 :END:
 *** U= V =W (字母 u 和 w 由v派生)
 **** 词根 nov = new
@@ -30,7 +29,6 @@
 ** 格林定律
 ** 像形字母记忆
 :PROPERTIES:
-:collapsed: true
 :END:
 *** A = 牛角
 *** B = 房子
@@ -39,7 +37,6 @@
 ** band 绑 bend 弯曲 bind 结合 bond 纽带 bund 联盟
 * 词缀
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 后缀
 *** al 形容词后缀
