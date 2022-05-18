@@ -31,11 +31,27 @@ calc-radix 改变基数
 #+END_SRC
 **
 * plantUML
-关系	画法
+:PROPERTIES:
+:collapsed: true
+:END:
+** 关系	画法
 继承	<|- -
 实现	<|. .
 依赖	<. .
 关联	<- -
 聚合	o- -
 组合	*- -
-*
+* 好用的包
+:PROPERTIES:
+:collapsed: true
+:END:
+** https://github.com/Wilfred/ht.el  哈希table
+** https://github.com/magnars/s.el  string操作
+** https://github.com/magnars/dash.el  list操作
+** https://github.com/rejeep/f.el 文件目录操作
+** https://github.com/ryancrum/json.el json操作
+** https://github.com/emacs-mirror/emacs/tree/master/lisp/url  url操作
+** https://github.com/volrath/treepy.el 递归和/或迭代地遍历树状数据结构的泛型函数
+** https://github.com/NicolasPetton/seq.el  sequence
+* 快捷键
+Option(M)+;  注释
