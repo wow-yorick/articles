@@ -1,7 +1,4 @@
 * calc
-:PROPERTIES:
-:collapsed: true
-:END:
 | Description | Emacs | CalcBase 10|
 |Binary	|2#11110101|	245|
 |Octal |	8#27	| 23 |
