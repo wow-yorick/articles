@@ -11,9 +11,6 @@ calc-radix 改变基数
 ** 计算1的个数
 先输入 424242 让它入栈,然后按下 b u 将该数字拆到集合中,然后按下 v # 算出1的个数,结果是10.
 * elisp
-:PROPERTIES:
-:collapsed: true
-:END:
 ** 生成 A-Z 对应索引
 #+BEGIN_SRC elisp
 (progn
@@ -25,6 +22,11 @@ calc-radix 改变基数
     (setq a     (+ a 1))
     (setq c      (+  c 1))
     ))
+#+END_SRC
+** 格式化时间
+
+#+BEGIN_SRC elisp
+(format-time-string "%F %X") ;2022-05-25 15:58:25"
 #+END_SRC
 **
 * plantUML
@@ -66,6 +68,9 @@ Call =org-store-link= 增加标签
 ** 仅由破折号(至少包含5个破折号)组成的线将导出为水平线。
 ** ‘*bold*’, ‘/italic/’, ‘_underlined_’, ‘=verbatim=’ and ‘~code~’, and, if you must, ‘+strike-through+’.
 * org-env-of-code-block
+:PROPERTIES:
+:collapsed: true
+:END:
 ** ~:var NAME=FILE:REFERENCE~
 ** ~ #+NAME:XXX~
 ** ~:colnames no | yes | nil~
