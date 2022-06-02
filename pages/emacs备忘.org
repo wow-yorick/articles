@@ -68,9 +68,6 @@ Call =org-store-link= 增加标签
 ** 仅由破折号(至少包含5个破折号)组成的线将导出为水平线。
 ** ‘*bold*’, ‘/italic/’, ‘_underlined_’, ‘=verbatim=’ and ‘~code~’, and, if you must, ‘+strike-through+’.
 * org-env-of-code-block
-:PROPERTIES:
-:collapsed: true
-:END:
 ** ~:var NAME=FILE:REFERENCE~
 ** ~ #+NAME:XXX~
 ** ~:colnames no | yes | nil~
@@ -83,5 +80,8 @@ Call =org-store-link= 增加标签
 ** ~data=example-table[,0]~ 整个维度索引留空 或者 ~*~ ~0:-1~ , eg: 所有第一列
 ** 索引对表格和代码都有效
 ** elisp 代码也可以作为参数 ‘(’, ‘[’, ‘'’ or ‘`’ 为emacs code
-**
+* org-mode
+** [[文本列表]]
+** [[表格]]
+** [[TODO]]
 **
