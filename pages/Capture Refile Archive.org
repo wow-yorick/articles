@@ -1,0 +1,1 @@
+* ^^M-x org-capture^^ 启动
