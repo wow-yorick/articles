@@ -1,0 +1,8 @@
+* ^^C-c C-q^^ ^^C-c C-c^^ 在标题上添加新的tag
+* tag groups
+** ~#+TAGS: [GTD: Control Persp]~
+** ~#+TAGS: { Context : @Home @Work }~ 相互排斥
+** ^^C-c C-x q-^^ 组标签支持开关
+* 搜索
+** ~C-c \~ 稀疏树 加前缀参数 忽略 带todo的标题
+**
