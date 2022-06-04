@@ -1,0 +1,3 @@
+* ^^C-c [^^ 当前文件添加进议程列表
+* ^^C-,^^ 循环访问议程中的文件
+* ^^org-agenda^^ Agenda dispatcher
