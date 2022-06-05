@@ -81,3 +81,4 @@ Call =org-store-link= 增加标签
 ** 索引对表格和代码都有效
 ** elisp 代码也可以作为参数 ‘(’, ‘[’, ‘'’ or ‘`’ 为emacs code
 * [[org-mode]]
+* [[debug]]

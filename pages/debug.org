@@ -1,0 +1,12 @@
+* edebug操作
+** 找到需要debug的函数定义 ^^M-x edebug-defun^^ 然后调用debug的函数
+** ^^?^^ 查看键绑定
+** ^^SPC^^ 下一步
+** ^^i^^ stepping in 介入
+** ^^o^^ 跳出
+** ^^q^^ 退出
+* debug 的操作
+** ^^M-x debug-on-entry^^ 跟踪一个需要调试的函数
+** ^^M-x toggle-debug-on-error^^ 进入debugger 当发生错误时
+** ^^M-x toggle-debug-on-quit^^ 进入debugger 当 触发 ~C-g~
+** ~d~ ~c~ 跳过评估
