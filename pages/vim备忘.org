@@ -1,5 +1,5 @@
 * 查找替换
 
 #+BEGIN_SRC vim
-
+:4,18s/xxx/ooo/g
 #+END_SRC
