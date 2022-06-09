@@ -28,6 +28,16 @@ calc-radix 改变基数
 #+BEGIN_SRC elisp
 (format-time-string "%F %X") ;2022-05-25 15:58:25"
 #+END_SRC
+** 下划线命名转驼峰
+
+#+BEGIN_SRC elisp
+  (mapcar (lambda (v)
+            (string-join (mapcar (lambda (v2)
+                                   (format "%c%s" (- (aref v2 0)  32) (substring v2 1)))
+                                 (split-string v "_"))
+                         ""))
+          (split-string data))
+#+END_SRC
 **
 * plantUML
 :PROPERTIES:

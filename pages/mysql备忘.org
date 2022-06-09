@@ -33,6 +33,9 @@ date_format( created_at, '%Y-%m-%d' ) as days
 
 -- delete语句
 DELETE FROM table_name [WHERE Clause]
+
+-- insert
+INSERT INTO `belong_merchant`(`user_id`,`updated_at`) VALUES (400094,now());
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
