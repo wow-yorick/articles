@@ -64,9 +64,8 @@ calc-radix 改变基数
 ** https://github.com/NicolasPetton/seq.el  sequence
 * 快捷键
 :PROPERTIES:
-:collapsed: true
 :END:
-Option(M)+;  注释
+^^Option(M)+;^^  注释
 ** ^^代码引用^^
 ~C-c '~ 进入编辑模式
 Call =org-store-link= 增加标签
