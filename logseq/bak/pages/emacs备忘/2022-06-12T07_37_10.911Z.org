@@ -28,16 +28,6 @@ calc-radix 改变基数
 #+BEGIN_SRC elisp
 (format-time-string "%F %X") ;2022-05-25 15:58:25"
 #+END_SRC
-** 下划线命名转驼峰
-
-#+BEGIN_SRC elisp
-  (mapcar (lambda (v)
-            (string-join (mapcar (lambda (v2)
-                                   (format "%c%s" (- (aref v2 0)  32) (substring v2 1)))
-                                 (split-string v "_"))
-                         ""))
-          (split-string data))
-#+END_SRC
 **
 * plantUML
 :PROPERTIES:
@@ -62,11 +52,11 @@ calc-radix 改变基数
 ** https://github.com/emacs-mirror/emacs/tree/master/lisp/url  url操作
 ** https://github.com/volrath/treepy.el 递归和/或迭代地遍历树状数据结构的泛型函数
 ** https://github.com/NicolasPetton/seq.el  sequence
-** https://github.com/tali713/esxml html or xml dom
 * 快捷键
 :PROPERTIES:
+:collapsed: true
 :END:
-^^Option(M)+;^^  注释
+Option(M)+;  注释
 ** ^^代码引用^^
 ~C-c '~ 进入编辑模式
 Call =org-store-link= 增加标签
@@ -78,9 +68,6 @@ Call =org-store-link= 增加标签
 ** 仅由破折号(至少包含5个破折号)组成的线将导出为水平线。
 ** ‘*bold*’, ‘/italic/’, ‘_underlined_’, ‘=verbatim=’ and ‘~code~’, and, if you must, ‘+strike-through+’.
 * org-env-of-code-block
-:PROPERTIES:
-:collapsed: true
-:END:
 ** ~:var NAME=FILE:REFERENCE~
 ** ~ #+NAME:XXX~
 ** ~:colnames no | yes | nil~
