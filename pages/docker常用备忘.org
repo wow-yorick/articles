@@ -2,6 +2,9 @@
 # example
 docker run -itd --name unbuntu library/ubuntu:latest bash
 * 运行交互式的容器
+:PROPERTIES:
+:collapsed: true
+:END:
 ** -t：在新容器内指定一个伪终端或终端
 ** -P：将容器内部使用的网络端口随机映射到我们使用的主机上。
 ** -p 5000:5000 : 设置一个映射端口
@@ -33,8 +36,12 @@ cat docker/ubuntu.tar | docker import - test/ubuntu:v1 // 导入容器快照
 docker top wizardly_chandrasekhar //查看进程
 docker inspect wizardly_chandrasekhar //查看底层信息
 docker ps -l // 查询最后一次创建的容器
+docker image prune -a // 删除所有未被容器使用的镜像
 #+END_SRC
 * 镜像管理
+:PROPERTIES:
+:collapsed: true
+:END:
 
 #+BEGIN_SRC shell
 docker images  //列出本地主机上的镜像
