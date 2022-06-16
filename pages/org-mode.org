@@ -6,3 +6,5 @@
 * [[时间戳]]
 * [[Capture Refile Archive]]
 * [[Agenda Files]]
+* [[code]]
+* [[富文本]]

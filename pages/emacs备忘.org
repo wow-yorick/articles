@@ -28,12 +28,17 @@ calc-radix 改变基数
 #+BEGIN_SRC elisp
 (format-time-string "%F %X") ;2022-05-25 15:58:25"
 #+END_SRC
-** (mapcar (lambda (v)
+** 下划线命名转驼峰
+
+#+BEGIN_SRC elisp
+(mapcar (lambda (v)
           (string-join (mapcar (lambda (v2)
                                  (format "%c%s" (- (aref v2 0)  32) (substring v2 1)))
                                (split-string v "_"))
                        ""))
         (split-string data))
+#+END_SRC
+**
 **
 * plantUML
 :PROPERTIES:
@@ -60,19 +65,8 @@ calc-radix 改变基数
 ** https://github.com/NicolasPetton/seq.el  sequence
 ** https://github.com/tali713/esxml html or xml dom
 * 快捷键
-:PROPERTIES:
-:END:
-^^Option(M)+;^^  注释
-** ^^代码引用^^
-~C-c '~ 进入编辑模式
-Call =org-store-link= 增加标签
-~C-c '~ 退出 在文本段落 ~C-c C-l~ 插入引用
-** ^^脚注^^
-*** ~C-c C-x f~ 创建脚注
-*** 加前缀参数 ~C-u 1-~ 对脚注进行操作
-*** ~C-c C-c~ ring jump
-** 仅由破折号(至少包含5个破折号)组成的线将导出为水平线。
-** ‘*bold*’, ‘/italic/’, ‘_underlined_’, ‘=verbatim=’ and ‘~code~’, and, if you must, ‘+strike-through+’.
+** ^^Option(M)+;^^  注释
+** ~==~   自动缩进
 * org-env-of-code-block
 :PROPERTIES:
 :collapsed: true
