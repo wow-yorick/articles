@@ -38,7 +38,12 @@ calc-radix 改变基数
                        ""))
         (split-string data))
 #+END_SRC
-**
+** 表格生成sql
+
+#+BEGIN_SRC elsp
+(mapcar (lambda (v)
+            (format "update verypay_coco.applyment_hz set applyment_state='APPLYMENT_STATE_FINISHED',err_msg='' where registeredenterprise='%s';" (nth 0 v) )) data)
+#+END_SRC
 **
 * plantUML
 :PROPERTIES:
