@@ -44,7 +44,14 @@ calc-radix 改变基数
 (mapcar (lambda (v)
             (format "update verypay_coco.applyment_hz set applyment_state='APPLYMENT_STATE_FINISHED',err_msg='' where registeredenterprise='%s';" (nth 0 v) )) data)
 #+END_SRC
-**
+** 列转为sql in的条件
+
+#+BEGIN_SRC elisp
+   (string-join (mapcar (lambda (v)
+                         (format "'%s'" (nth 0 v)))
+                       data)
+               ",")
+#+END_SRC
 * plantUML
 :PROPERTIES:
 :collapsed: true
@@ -90,3 +97,4 @@ calc-radix 改变基数
 ** elisp 代码也可以作为参数 ‘(’, ‘[’, ‘'’ or ‘`’ 为emacs code
 * [[org-mode]]
 * [[debug]]
+*
