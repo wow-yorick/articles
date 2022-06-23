@@ -3,3 +3,4 @@
 * ^^C-F12^^ 打开structure
 * ^^M-F12^^ 打开控制台
 * ^^M-RET^^ 导入包
+* ^^O+1^^ project

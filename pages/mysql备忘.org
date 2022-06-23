@@ -28,6 +28,8 @@ select * from benefit WHERE ext_attr->'$.category' like '%CARDD %';
 -- 更新字段
 UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=10010235;
 
+update ticket_version set ext_attr = JSON_MERGE_PATCH(ext_attr,'{"commission_rate":2.5}') where ticket_id  in (1119847)
+
 -- 时间格式化
 date_format( created_at, '%Y-%m-%d' ) as days
 
@@ -36,6 +38,7 @@ DELETE FROM table_name [WHERE Clause]
 
 -- insert
 INSERT INTO `belong_merchant`(`user_id`,`updated_at`) VALUES (400094,now());
+
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。

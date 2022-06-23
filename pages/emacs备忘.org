@@ -1,4 +1,4 @@
-* calc
+* [[calc]]
 | Description | Emacs | CalcBase 10|
 |Binary	|2#11110101|	245|
 |Octal |	8#27	| 23 |
@@ -10,72 +10,8 @@ calc-radix 改变基数
 ** (calc-clip) 来现符号/无符号整型的切换.
 ** 计算1的个数
 先输入 424242 让它入栈,然后按下 b u 将该数字拆到集合中,然后按下 v # 算出1的个数,结果是10.
-* elisp
-** 生成 A-Z 对应索引
-#+BEGIN_SRC elisp
-(progn
-  (insert "\n")
-  (setq a 0)
-  (setq c ?A)
-  (while (< a 26)
-    (insert  (format "%d - %c\n" a c))
-    (setq a     (+ a 1))
-    (setq c      (+  c 1))
-    ))
-#+END_SRC
-** 格式化时间
-
-#+BEGIN_SRC elisp
-(format-time-string "%F %X") ;2022-05-25 15:58:25"
-#+END_SRC
-** 下划线命名转驼峰
-
-#+BEGIN_SRC elisp
-(mapcar (lambda (v)
-          (string-join (mapcar (lambda (v2)
-                                 (format "%c%s" (- (aref v2 0)  32) (substring v2 1)))
-                               (split-string v "_"))
-                       ""))
-        (split-string data))
-#+END_SRC
-** 表格生成sql
-
-#+BEGIN_SRC elsp
-(mapcar (lambda (v)
-            (format "update verypay_coco.applyment_hz set applyment_state='APPLYMENT_STATE_FINISHED',err_msg='' where registeredenterprise='%s';" (nth 0 v) )) data)
-#+END_SRC
-** 列转为sql in的条件
-
-#+BEGIN_SRC elisp
-   (string-join (mapcar (lambda (v)
-                         (format "'%s'" (nth 0 v)))
-                       data)
-               ",")
-#+END_SRC
-* plantUML
-:PROPERTIES:
-:collapsed: true
-:END:
-** 关系	画法
-继承	<|- -
-实现	<|. .
-依赖	<. .
-关联	<- -
-聚合	o- -
-组合	*- -
-* 好用的包
-:PROPERTIES:
-:collapsed: true
-:END:
-** https://github.com/Wilfred/ht.el  哈希table
-** https://github.com/magnars/s.el  string操作
-** https://github.com/magnars/dash.el  list操作
-** https://github.com/rejeep/f.el 文件目录操作
-** https://github.com/ryancrum/json.el json操作
-** https://github.com/emacs-mirror/emacs/tree/master/lisp/url  url操作
-** https://github.com/volrath/treepy.el 递归和/或迭代地遍历树状数据结构的泛型函数
-** https://github.com/NicolasPetton/seq.el  sequence
-** https://github.com/tali713/esxml html or xml dom
+* [[elisp]]
+* [[plantUML]]
 * 快捷键
 ** ^^Option(M)+;^^  注释
 ** ~==~   自动缩进
