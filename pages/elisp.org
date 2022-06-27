@@ -39,7 +39,25 @@
                        data)
                ",")
 #+END_SRC
-* - elisp好用的包  
+* 遍历文件夹
+
+#+BEGIN_SRC elisp
+(setq
+   skipDirs
+   [
+    ".#work-flow.org"
+  ".DS_Store"
+  "coco"
+    ])
+
+  (seq-filter
+   (lambda (path)
+     (not (seq-some
+           (lambda (x) (string-match x path))
+           skipDirs )))
+   (directory-files "/Users/yudong/Desktop/work" ))
+#+END_SRC
+* - elisp 好用的包  
 	- https://github.com/Wilfred/ht.el  哈希table  
 	- https://github.com/magnars/s.el  string操作  
 	- https://github.com/magnars/dash.el  list操作  
