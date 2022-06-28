@@ -6,3 +6,13 @@ Call =org-store-link= 增加标签
 ** ~C-c C-x f~ 创建脚注
 ** 加前缀参数 ~C-u 1-~ 对脚注进行操作
 ** ~C-c C-c~ ring jump
+* - org-env-of-code-block  
+	- `:var NAME=FILE:REFERENCE`  
+	- ` #+NAME:XXX`  
+	- `:colnames no | yes | nil`  
+	- `:rownames yes`  
+	- `example-table[0,-1]` 逗号分割各个维度 负数表示从最后往前   
+	- `data=example-table[1:3]` 冒号分割表示维度的范围，eg: 第二行开始的三行  
+	- `data=example-table[,0]` 整个维度索引留空 或者 `*` `0:-1` , eg: 所有第一列  
+	- 索引对表格和代码都有效  
+	- elisp 代码也可以作为参数 ‘(’, ‘[’, ‘'’ or ‘`’ 为emacs code
