@@ -1,0 +1,27 @@
+* 计算两个日期之间间隔天数(包括两个日期)
+
+#+BEGIN_SRC elisp
+(defun my/org-days-between (start end)
+  "Number of days between START and END.
+This includes START and END."
+  (1+ (- (calendar-absolute-from-gregorian (org-date-to-gregorian end))
+         (calendar-absolute-from-gregorian (org-date-to-gregorian start)))))
+#+END_SRC
+* | Needed | Type         | Per day |      Start |        End | Stock |
+|--------+--------------+---------+------------+------------+-------|
+|     30 | Medication A |       2 | 2015-06-16 | 2015-06-30 |     0 |
+|      2 | Medication B |     0.1 | 2015-06-16 | 2015-06-30 |   0.2 |
+~#+TBLFM: @2$1..@>$1='(ceiling (- (* (my/org-days-between $4 $5) (string-to-number $3)) (string-to-number $6)))~
+
+~#+TBLFM: $3=$2 - $1 ~
+* 在#+TBLFM:这一行按下 C-c C-c 会自动更新第一列的值.
+* ~@2$1..@>$1~ 表示第一列( ~$1~ )的第二行(@2)到最后一行(@>)的单元. =’= 告诉Org将紧跟着的表达式看成Emacs-Lisp来计算.计算时会替换指定的值(例如$4被替换为第四列的值).
+* ceiling 函数向上取整
+* 由于该等式从会从表格中的每行中取相应数据, 因此所有行中的开始与结束日期都必须有值(即使这些值其实每行都一样的). 为了快速复制这些值到下一行,设置 org-table-copy-increment 为nil, 然后在你希望复制上一行值的单元上按下 S-return (shift-return)即可. 不断按 S-return 就会不断的往下复制.
+* 由于表格计算公式中各表格的内容会当成是字符串来看待, 因此有些值需要使用 string-to-number 来将之转换为数字才能进行乘法和减法运算. 若所有表格内容都是数字,则可以通过 ;N 标志让org自动帮你作转换. 像下面这样:
+| Needed | Type         | Per day | Days | Stock |
+|--------+--------------+---------+------+-------|
+|      6 | Medication A |       2 |    3 |     0 |
+|      1 | Medication B |     0.1 |    3 |   0.2 |
+
+~#+TBLFM: @2$1..@>$1='(ceiling (- (* $3 $4) $5)));N~
