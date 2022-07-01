@@ -32,12 +32,13 @@
   ) data)
 
 #+END_SRC
-* 列转为sql in的条件
+* 逗号分割
+
 #+BEGIN_SRC elisp
-   (string-join (mapcar (lambda (v)
-                         (format "'%s'" (nth 0 v)))
-                       data)
-               ",")
+(string-join (mapcar (lambda (v)
+                      (format "'%s'" (nth 0 v)))
+                    data)
+            ",")
 #+END_SRC
 * 遍历文件夹
 
@@ -56,6 +57,15 @@
            (lambda (x) (string-match x path))
            skipDirs )))
    (directory-files "/Users/yudong/Desktop/work" ))
+#+END_SRC
+* 处理路径
+
+#+BEGIN_SRC elisp
+ (string-join (mapcar (lambda (v)
+                           (format "'%s'"
+                                   (string-replace "/Users/yudong/workspace/goproject/repo-coco/coco-applyment-import/data-backup" "data" (nth 0 v))))
+                         data)
+                 ",\n")
 #+END_SRC
 * - elisp 好用的包  
 	- https://github.com/Wilfred/ht.el  哈希table  
