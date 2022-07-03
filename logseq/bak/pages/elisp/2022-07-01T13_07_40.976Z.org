@@ -1,0 +1,69 @@
+* 生成 A-Z 对应索引
+#+BEGIN_SRC elisp
+(progn
+  (insert "\n")
+  (setq a 0)
+  (setq c ?A)
+  (while (< a 26)
+    (insert  (format "%d - %c\n" a c))
+    (setq a     (+ a 1))
+    (setq c      (+  c 1))
+    ))
+#+END_SRC
+* 格式化时间
+#+BEGIN_SRC elisp
+(format-time-string "%F %X") ;2022-05-25 15:58:25"
+#+END_SRC
+* 下划线命名转驼峰
+#+BEGIN_SRC elisp
+(mapcar (lambda (v)
+          (string-join (mapcar (lambda (v2)
+                                 (format "%c%s" (- (aref v2 0)  32) (substring v2 1)))
+                               (split-string v "_"))
+                       ""))
+        (split-string data))
+#+END_SRC
+* 表格生成sql
+#+BEGIN_SRC elsp
+(mapcar (lambda (v)
+              (format "update verypay_coco.applyment_hz set applyment_state='APPLYMENT_STATE_FINISHED',err_msg='' where registeredenterprise='%s';" (nth 1 v) )
+              ;(format "select * from verypay_coco.applyment_hz where registeredenterprise='%s';" (nth 1 v) )
+              ;(format "update verypay_ext.applyment set applyment_state='APPLYMENT_STATE_FINISHED',err_msg='',sub_mchid='%s',applyment_id=%d  where registeredenterprise='%s';" (nth 2 v) (nth 3 v) (nth 1 v) )
+  ) data)
+
+#+END_SRC
+* 列转为sql in的条件
+#+BEGIN_SRC elisp
+   (string-join (mapcar (lambda (v)
+                         (format "'%s'" (nth 0 v)))
+                       data)
+               ",")
+#+END_SRC
+* 遍历文件夹
+
+#+BEGIN_SRC elisp
+(setq
+   skipDirs
+   [
+    ".#work-flow.org"
+  ".DS_Store"
+  "coco"
+    ])
+
+  (seq-filter
+   (lambda (path)
+     (not (seq-some
+           (lambda (x) (string-match x path))
+           skipDirs )))
+   (directory-files "/Users/yudong/Desktop/work" ))
+#+END_SRC
+* - elisp 好用的包  
+	- https://github.com/Wilfred/ht.el  哈希table  
+	- https://github.com/magnars/s.el  string操作  
+	- https://github.com/magnars/dash.el  list操作  
+	- https://github.com/rejeep/f.el 文件目录操作  
+	- https://github.com/ryancrum/json.el json操作  
+	- https://github.com/emacs-mirror/emacs/tree/master/lisp/url  url操作  
+	- https://github.com/volrath/treepy.el 递归和/或迭代地遍历树状数据结构的泛型函数  
+	- https://github.com/NicolasPetton/seq.el  sequence  
+	- https://github.com/tali713/esxml html or xml dom
