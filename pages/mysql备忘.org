@@ -39,6 +39,9 @@ DELETE FROM table_name [WHERE Clause]
 -- insert
 INSERT INTO `belong_merchant`(`user_id`,`updated_at`) VALUES (400094,now());
 
+-- select insert
+insert into verypay_coco.applyment_hz (branch_id_main,registeredenterprise,status,applyment_state,finish_time,updated_at,created_at)
+select store_sn,registeredenterprise,1 as status,applyment_state,finished_at,updated_at,created_at from verypay_ext.applyment where registeredenterprise in ('北京多绒宝珍水餐饮管理有限公司','淮安兆沷餐饮管理有限公司','上海轩轾餐饮管理有限公司') -- 无
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。

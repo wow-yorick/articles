@@ -67,6 +67,12 @@
                          data)
                  ",\n")
 #+END_SRC
+* in 列表
+
+#+BEGIN_SRC elisp
+ (if (--find-index (string-equal it "abcd") '("abc" "def" "abcde")) "find" "no")
+#+END_SRC
+*
 * - elisp 好用的包  
 	- https://github.com/Wilfred/ht.el  哈希table  
 	- https://github.com/magnars/s.el  string操作  
