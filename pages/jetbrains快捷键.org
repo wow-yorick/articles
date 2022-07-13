@@ -13,4 +13,3 @@
 * ^^S+t^^ 新建标签页
 * ^^g d^^ 跳入定义 ^^C-o^^ 跳出
 * ^^COMMAND(S)+SHIFT+f^^ find in file
-*
