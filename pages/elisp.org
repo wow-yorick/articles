@@ -72,6 +72,20 @@
 #+BEGIN_SRC elisp
  (if (--find-index (string-equal it "abcd") '("abc" "def" "abcde")) "find" "no")
 #+END_SRC
+* 导入api
+
+#+BEGIN_SRC elisp :var group="/open/eticket/benefit" title="权益卡" data=router
+NAME: router
+| /modify                      | 批次修改                  |
+
+  (string-join (mapcar (lambda (item)
+                         (format "{
+          \"api_name\": \"%s-%s\",
+          \"api_url\": \"%s%s\"
+      }" title (nth 1 item) group (nth 0 item))) data)
+               ",")
+
+#+END_SRC
 *
 * - elisp 好用的包  
 	- https://github.com/Wilfred/ht.el  哈希table  
