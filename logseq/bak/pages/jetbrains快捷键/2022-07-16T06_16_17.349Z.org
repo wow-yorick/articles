@@ -1,0 +1,16 @@
+* ^^C+M+o^^ 移除没用到的包
+* ^^C-b^^ 打开链接
+* ^^COMMAND(S)-F12^^ 打开structure
+* ^^M-F12^^ 打开控制台
+* ^^M-RET^^ 导入包
+* ^^S+1^^ project
+* ^^S+`^^ 切换窗口
+* ^^M+S+方向键^^ 标签页切换  或者使用vim的 ~:tabn~ ~:tabp~
+* ^^S+SHIFT+O^^ 搜索文件
+* ^^COMMAND(S)+k^^ git commit
+* ^^COMMAND(S)+SHIFT+k^^ git push
+* ^^S+w^^ 关闭标签页
+* ^^S+t^^ 新建标签页
+* ^^g d^^ 跳入定义 ^^C-o^^ 跳出
+* ^^COMMAND(S)+SHIFT+f^^ find in file
+*
