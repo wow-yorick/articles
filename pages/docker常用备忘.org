@@ -1,10 +1,12 @@
+* 访问宿主机
+
+#+BEGIN_TIP
+host.docker.internal
+#+END_TIP
 * docker run -itd --name <docker-name> <docker image> bash
 # example
 docker run -itd --name unbuntu library/ubuntu:latest bash
 * 运行交互式的容器
-:PROPERTIES:
-:collapsed: true
-:END:
 ** -t：在新容器内指定一个伪终端或终端
 ** -P：将容器内部使用的网络端口随机映射到我们使用的主机上。
 ** -p 5000:5000 : 设置一个映射端口

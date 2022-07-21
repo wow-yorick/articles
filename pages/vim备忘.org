@@ -3,3 +3,10 @@
 #+BEGIN_SRC vim
 :4,18s/xxx/ooo/g
 #+END_SRC
+* 编辑快捷键
+
+#+BEGIN_NOTE
+:%s/_\(\w\)/\u\1/g  vim下划线转驼峰
+:%s/_\(\w\)/\=toupper(submatch(1))/g 下划线转驼峰2
+:%s/^\(\w\)/\L\1/g 首字母大写
+#+END_NOTE

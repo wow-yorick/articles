@@ -5,5 +5,80 @@ nslookup www.baidu.com
 
 // brew 检查
 brew doctor --verbose
+
+// 跟踪进程
+sudo dtruss -p 30968
+
+// 查看端口
+netstat -ntlp
+tcpdump
+
+// 过滤行
+ ll | head -10  # 头10行
+ ll | tail -10 # 尾10行
+ ll | sed -n '22,31p' # 指定行22到31行
+
+ tail -n 1000  # 显示最后1000行
+ tail -n +1000 # 从1000行开始显示，显示1000行以后的
+ 
+ // 获取出口IP
+ #!/bin/bash
+PUBLIC_IP=`wget http://ipecho.net/plain -O - -q ; echo`
+echo $PUBLIC_IP
+
+curl cip.cc
+// 使用代理启动chrome
+google-chrome --proxy-server="socks5://127.0.0.1:10808"
 #+END_SRC
+* find 查询
+
+#+BEGIN_EXAMPLE
+find . -type f -exec grep  -nH --null -e xxxx {} +
+
+--递归查找目录下含有该字符串的所有文件
+grep -rn "data_chushou_pay_info"  /home/hadoop/nisj/automationDemand/
+
+--查找当前目录下后缀名过滤的文件
+grep -Rn "data_chushou_pay_info" *.py
+
+--当前目录及设定子目录下的符合条件的文件
+grep -Rn "data_chushou_pay_info" /home/hadoop/nisj/automationDemand/ *.py
+ 
+--结合find命令过滤目录及文件名后缀
+find /home/hadoop/nisj/automationDemand/ -type f -name '*.py'|xargs grep -n 'data_chushou_pay_info'
+—————————— 
+
+将当前目录及其子目录下所有文件后缀为 .c 的文件列出来:
+# find . -name "*.c”
+
+将当前目录及其子目录中的所有文件列出：
+# find . -type f
+
+将当前目录及其子目录下所有最近 20 天内更新过的文件列出
+# find . -ctime -20
+
+查找 /var/log 目录中更改时间在 7 日以前的普通文件，并在删除之前询问它们：
+# find /var/log -type f -mtime +7 -ok rm {} \;
+
+查找当前目录中文件属主具有读、写权限，并且文件所属组的用户和其他用户具有读权限的文件：
+# find . -type f -perm 644 -exec ls -l {} \;
+
+查找系统中所有文件长度为 0 的普通文件，并列出它们的完整路径
+# find / -type f -size 0 -exec ls -l {} \;
+#+END_EXAMPLE
+* #card Linux nohup、&、 2>&1是什么？
+
+#+BEGIN_EXAMPLE
+基本含义
+/dev/null 表示空设备文件
+0 表示stdin标准输入
+1 表示stdout标准输出
+2 表示stderr标准错误
+> file 表示将标准输出输出到file中，也就相当于 1>file
+2> error 表示将错误输出到error文件中
+2>&1 也就表示将错误重定向到标准输出上
+2>&1 >file ：错误输出到终端，标准输出重定向到文件file，等于 > file 2>&1(标准输出重定向到文件，错误重定向到标准输出)。
+& 放在命令到结尾，表示后台运行，防止终端一直被某个进程占用，这样终端可以执行别到任务，配合 >file 2>&1可以将log保存到某个文件中，但如果终端关闭，则进程也停止运行。如 command > file.log 2>&1 & 。
+nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
+#+END_EXAMPLE
 *
