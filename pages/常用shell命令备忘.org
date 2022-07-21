@@ -87,16 +87,15 @@ svnserve -d -r /usr/local/svn/svnrepos/ --listen-port 3691
 
 cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
 #+END_SRC
-* #card Linux nohup、&、 2>&1是什么？
+** Linux nohup、&、 2>&1是什么？
 :PROPERTIES:
-:card-last-interval: -1
-:card-repeats: 1
-:card-ease-factor: 2.5
-:card-next-schedule: 2022-07-21T16:00:00.000Z
-:card-last-reviewed: 2022-07-21T08:45:21.444Z
 :card-last-score: 1
+:card-repeats: 1
+:card-next-schedule: 2022-07-21T16:00:00.000Z
+:card-last-interval: -1
+:card-ease-factor: 2.5
+:card-last-reviewed: 2022-07-21T08:45:21.444Z
 :END:
-
 #+BEGIN_EXAMPLE
 基本含义
 /dev/null 表示空设备文件
