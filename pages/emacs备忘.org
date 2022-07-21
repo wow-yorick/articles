@@ -4,3 +4,4 @@
 * [[快捷键]]
 * [[org-mode]]
 * [[debug]]
+* [[https://www.cnblogs.com/eat-and-die/p/10310586.html#org7bd1e1a][elisp基础]]
