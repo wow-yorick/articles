@@ -29,6 +29,18 @@ echo $PUBLIC_IP
 curl cip.cc
 // 使用代理启动chrome
 google-chrome --proxy-server="socks5://127.0.0.1:10808"
+
+# htop 交互式进程查看器
+htop -p 8350
+
+netstat - atulnp会显示所有端口和所有对应的程序，用grep管道可以过滤出想要的字段
+
+    -a ：all，表示列出所有的连接，服务监听，Socket资料
+    -t ：tcp，列出tcp协议的服务
+    -u ：udp，列出udp协议的服务
+    -n ：port number， 用端口号来显示
+    -l ：listening，列出当前监听服务
+    -p ：program，列出服务程序的PID
 #+END_SRC
 * find 查询
 
@@ -66,7 +78,24 @@ find /home/hadoop/nisj/automationDemand/ -type f -name '*.py'|xargs grep -n 'dat
 查找系统中所有文件长度为 0 的普通文件，并列出它们的完整路径
 # find / -type f -size 0 -exec ls -l {} \;
 #+END_EXAMPLE
+* 日志处理
+
+#+BEGIN_SRC sh
+sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
+
+svnserve -d -r /usr/local/svn/svnrepos/ --listen-port 3691
+
+cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
+#+END_SRC
 * #card Linux nohup、&、 2>&1是什么？
+:PROPERTIES:
+:card-last-interval: -1
+:card-repeats: 1
+:card-ease-factor: 2.5
+:card-next-schedule: 2022-07-21T16:00:00.000Z
+:card-last-reviewed: 2022-07-21T08:45:21.444Z
+:card-last-score: 1
+:END:
 
 #+BEGIN_EXAMPLE
 基本含义
@@ -81,4 +110,77 @@ find /home/hadoop/nisj/automationDemand/ -type f -name '*.py'|xargs grep -n 'dat
 & 放在命令到结尾，表示后台运行，防止终端一直被某个进程占用，这样终端可以执行别到任务，配合 >file 2>&1可以将log保存到某个文件中，但如果终端关闭，则进程也停止运行。如 command > file.log 2>&1 & 。
 nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
 #+END_EXAMPLE
-*
+* [[curl使用技巧]]
+* [[git备忘]]
+* linux shell中$0,$?,$!等的特殊用法
+
+#+BEGIN_EXAMPLE
+（1）$$
+
+Shell本身的PID（ProcessID，即脚本运行的当前进程ID号）
+（2）$!
+
+Shell最后运行的后台Process的PID(后台运行的最后一个进程的进程ID号)
+（3）$?
+
+最后运行的命令的结束代码（返回值）即执行上一个指令的返回值 (显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误)
+（4）$-
+
+显示shell使用的当前选项，与set命令功能相同
+（5）$*
+
+所有参数列表。如"$*"用「"」括起来的情况、以"$1 $2 … $n"的形式输出所有参数，此选项参数可超过9个。
+（6）$@
+
+所有参数列表。如"$@"用「"」括起来的情况、以"$1" "$2" … "$n" 的形式输出所有参数。
+（7）$*
+
+跟$@类似，但是可以当作数组用
+（8）$#
+
+添加到Shell的参数个数
+（9）$0
+
+Shell本身的文件名
+（10）$1～$n
+
+添加到Shell的各参数值。$1是第1参数、$2是第2参数…
+#+END_EXAMPLE
+* Linux nohup、&、 2>&1是什么？
+
+#+BEGIN_SRC sh
+/dev/null 表示空设备文件
+0 表示stdin标准输入
+1 表示stdout标准输出
+2 表示stderr标准错误
+> file 表示将标准输出输出到file中，也就相当于 1>file
+2> error 表示将错误输出到error文件中
+2>&1 也就表示将错误重定向到标准输出上
+2>&1 >file ：错误输出到终端，标准输出重定向到文件file，等于 > file 2>&1(标准输出重定向到文件，错误重定向到标准输出)。
+& 放在命令到结尾，表示后台运行，防止终端一直被某个进程占用，这样终端可以执行别到任务，配合 >file 2>&1可以将log保存到某个文件中，但如果终端关闭，则进程也停止运行。如 command > file.log 2>&1 & 。
+nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
+#+END_SRC
+* sed 修改读取的文件内容
+
+#+BEGIN_SRC sh
+每行中替换： sed -i 's/原字符串/新字符串/' /home/1.txt
+全局替换：sed -i 's/原字符串/新字符串/g' /home/1.txt
+#+END_SRC
+* 抓取流量的方法看看什么进程在执行
+
+#+BEGIN_SRC sh
+ngrep -W byline -q -d eth0 host xxxx port 3306
+
+ngrep -W byline -q -d eth0 port 3306
+
+ngrep -W byline -q -d eth0 port 3306 | grep "SELECT * FROM `users`” | -C 2 = -A 2 -B 2
+#+END_SRC
+* linux rm
+
+#+BEGIN_SRC sh
+# 排除文件
+rm -fr `ls | grep -v "elpa"`
+# 查询文件大小为0的文件并删除(这个脚本会将本目录下size为0的文件移动到 ~/tmp目录下)
+find -size 0 -exec mv {} ~/tmp \;
+
+#+END_SRC

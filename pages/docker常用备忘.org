@@ -328,3 +328,8 @@ cap_drop:
 #+BEGIN_SRC shell
 alias composer2="docker run --rm -i --entrypoint /usr/bin/composer -w /usr/src/app --volume $PWD:/usr/src/app -v ~/.composer:/root/.composer -v ~/.ssh:/root/.ssh:ro composer:latest"
 #+END_SRC
+* k8s中copy文件
+
+#+BEGIN_SRC sh
+kubectl cp  pay-production/marketing-api-65b8547f84-r29w4:/tmp/dicos_text.csv a.csv  -c php
+#+END_SRC

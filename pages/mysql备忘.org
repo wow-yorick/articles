@@ -25,13 +25,18 @@ SELECT
     
 -- json字段查询
 select * from benefit WHERE ext_attr->'$.category' like '%CARDD %';
+select *,JSON_EXTRACT(ext_attr,'$.sodexo_mid') as json_sodexo_mid from stores where ext_attr -> '$.sodexo_mid' is not null
 -- 更新字段
 UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=10010235;
+-- update stores set ext_attr = JSON_OBJECT("abc","deb") where store_id=3404975; // 值为null时需要用json_object 
+-- update stores set ext_attr = JSON_SET(ext_attr, '$.dosomething', "21021842") where store_id=3404975;
 
 update ticket_version set ext_attr = JSON_MERGE_PATCH(ext_attr,'{"commission_rate":2.5}') where ticket_id  in (1119847)
 
 -- 时间格式化
 date_format( created_at, '%Y-%m-%d' ) as days
+-- 时间格式化为 “YYYY-MM-DD”
+SELECT date_format( createTime,'%Y-%m-%d') AS createTime FROM TABLE
 
 -- delete语句
 DELETE FROM table_name [WHERE Clause]
@@ -53,4 +58,8 @@ select ext_attr->'$.hb.hb_fq_num'  from orders where parent_user_id=29 and creat
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
 ** 一个汉字占多少长度与编码有关 UTF-8 一个汉字=3个字节 一个英文一个字节
 ** varchar(n) 表示n个字符，^^无论汉字和英文^^
+** 索引创建
+1. 最左前缀原则
+2. 不冗余原则
+3. 最大选择性原则
 **
