@@ -1,4 +1,8 @@
-* #+BEGIN_EXAMPLE
+* 分支操作
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 git remote show origin
 删除远程分支
 git push origin --delete refund-time
@@ -6,17 +10,31 @@ git push origin --delete refund-time
 git branch -d refund-time
 创建分支
 git checkout -b xxx
+#+END_SRC
+* 查看日志
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 git log --oneline --graph --decorate
 一个仓的直线提交图标 
 git ls-files 
 git log --oneline --stat
-MAIL_PASSWORD=aznwwudlvcfybjbi
+
 1. git log filename
 可以看到fileName相关的commit记录
-2. git log -p filenam
+
+2. git log -p filename
 可以显示每次提交的diff
+
 git log -p 7afd2c5f124a82318e4e7309c997ea4beef66436 src/config/pay.php
 3. 只看某次提交中的某个文件变化，可以直接加上fileName
+#+END_SRC
+* 清空分支(历史提交了敏感信息)慎用
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 我们可以使用 git 自带的 git filter-branch 命令来实现。
 git filter-branch --force --index-filter \
 'git rm --cached --ignore-unmatch PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA' \
@@ -32,10 +50,12 @@ PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA 是你需要删除的敏感信息文件名
  	0.	删除分支git branch -D master
  	0.	将当前分支重命名git branch -m master
  	0.	最后，强制更新存储库。git push -f origin master
-git reset --hard HEAD^ 
-git push —force
-
-
+#+END_SRC
+* 创建新仓库
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 Command line instructions
 Git global setup
 git config --global user.name "袁于东"
@@ -60,10 +80,12 @@ git remote rename origin old-origin
 git remote add origin git@git.verystar.cn:verypay/eticket-sdk-php.git
 git push -u origin --all
 git push -u origin --tags
-#+END_EXAMPLE
+#+END_SRC
 * Github上fork项目后与原项目保持同步
-
-#+BEGIN_TIP
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 **步骤**
 假设来源为 `https://github.com/_original/_project.git`
 fork 项目为  `https://github.com/_your/_project.git`
@@ -84,10 +106,12 @@ fork 项目为  `https://github.com/_your/_project.git`
 7. 如果需要给update_stream发送Pull Request
     打开 `https://github.com/_your/_project.git`  
     点击Pull Request -> 点击New Pull Request -> 输入Title和功能说明 -> 点击Send pull request
-#+END_TIP
+#+END_SRC
 * git仓库拉代码设置代理
-
-#+BEGIN_TIP
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 git config --global http.proxy
 11087 git config --global http.proxy http://127.0.0.1:1087
 
@@ -100,8 +124,12 @@ git config --global https.proxy [https://127.0.0.1:1080](https://127.0.0.1:1080/
 git config --global --unset http.proxy
 
 git config --global --unset https.proxy
-#+END_TIP
-* #+BEGIN_SRC 
+#+END_SRC
+* ^^.gitignore^^ 不生效问题
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 在项目开发过程中个，一般都会添加 .gitignore 文件，规则很简单，但有时会发现，规则不生效。
 
 原因是 .gitignore 只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
@@ -115,7 +143,9 @@ git commit -m 'update .gitignore'
 
 #+END_SRC
 * git commit之后，撤销commit
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 git reset --soft HEAD^
 #+END_SRC

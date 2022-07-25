@@ -1,6 +1,5 @@
 * 常用
-
-#+BEGIN_SRC sh
+** #+BEGIN_SRC sh
 curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"id":100}' http://localhost/test/adduser
 
 # get
@@ -11,7 +10,6 @@ curl -v -X POST 192.168.33.1:8080/girls -d 'age=14&cupSize=C'
 
 #+END_SRC
 * 检测慢响应
-
-#+BEGIN_SRC sh
+** #+BEGIN_SRC sh
 curl -o /dev/null -4 -v -s -w %{time_namelookup}:%{time_connect}:%{time_starttransfer}:%{time_total}"\n" 'https://api.mch.weixin.qq.com/orderquery’
 #+END_SRC

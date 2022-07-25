@@ -1,5 +1,8 @@
 * shell
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 // 查看域名属性
 nslookup www.baidu.com
 
@@ -43,8 +46,10 @@ netstat - atulnp会显示所有端口和所有对应的程序，用grep管道可
     -p ：program，列出服务程序的PID
 #+END_SRC
 * find 查询
-
-#+BEGIN_EXAMPLE
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_EXAMPLE
 find . -type f -exec grep  -nH --null -e xxxx {} +
 
 --递归查找目录下含有该字符串的所有文件
@@ -79,15 +84,17 @@ find /home/hadoop/nisj/automationDemand/ -type f -name '*.py'|xargs grep -n 'dat
 # find / -type f -size 0 -exec ls -l {} \;
 #+END_EXAMPLE
 * 日志处理
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
 
 svnserve -d -r /usr/local/svn/svnrepos/ --listen-port 3691
 
 cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print $1"|"$3"|"$4 }'|more
 #+END_SRC
-** Linux nohup、&、 2>&1是什么？
+* Linux nohup、&、 2>&1是什么？
 :PROPERTIES:
 :card-last-score: 1
 :card-repeats: 1
@@ -95,8 +102,9 @@ cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print
 :card-last-interval: -1
 :card-ease-factor: 2.5
 :card-last-reviewed: 2022-07-21T08:45:21.444Z
+:collapsed: true
 :END:
-#+BEGIN_EXAMPLE
+** #+BEGIN_EXAMPLE
 基本含义
 /dev/null 表示空设备文件
 0 表示stdin标准输入
@@ -112,8 +120,10 @@ nohup放在命令的开头，表示不挂起（no hang up），也即，关闭�
 * [[curl使用技巧]]
 * [[git备忘]]
 * linux shell中$0,$?,$!等的特殊用法
-
-#+BEGIN_EXAMPLE
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_EXAMPLE
 （1）$$
 
 Shell本身的PID（ProcessID，即脚本运行的当前进程ID号）
@@ -146,8 +156,10 @@ Shell本身的文件名
 添加到Shell的各参数值。$1是第1参数、$2是第2参数…
 #+END_EXAMPLE
 * Linux nohup、&、 2>&1是什么？
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 /dev/null 表示空设备文件
 0 表示stdin标准输入
 1 表示stdout标准输出
@@ -160,14 +172,18 @@ Shell本身的文件名
 nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
 #+END_SRC
 * sed 修改读取的文件内容
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 每行中替换： sed -i 's/原字符串/新字符串/' /home/1.txt
 全局替换：sed -i 's/原字符串/新字符串/g' /home/1.txt
 #+END_SRC
 * 抓取流量的方法看看什么进程在执行
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 ngrep -W byline -q -d eth0 host xxxx port 3306
 
 ngrep -W byline -q -d eth0 port 3306
@@ -175,8 +191,10 @@ ngrep -W byline -q -d eth0 port 3306
 ngrep -W byline -q -d eth0 port 3306 | grep "SELECT * FROM `users`” | -C 2 = -A 2 -B 2
 #+END_SRC
 * linux rm
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
 # 排除文件
 rm -fr `ls | grep -v "elpa"`
 # 查询文件大小为0的文件并删除(这个脚本会将本目录下size为0的文件移动到 ~/tmp目录下)
