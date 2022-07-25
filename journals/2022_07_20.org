@@ -1,11 +1,11 @@
 * 晚上还是不能喝可乐，容易影响睡眠
 * #card 今天几点？ #编程 #calc
 :PROPERTIES:
-:card-last-interval: -1
-:card-repeats: 1
-:card-ease-factor: 2.5
-:card-next-schedule: 2022-07-22T16:00:00.000Z
-:card-last-reviewed: 2022-07-22T02:08:21.858Z
-:card-last-score: 1
+:card-last-interval: 4
+:card-repeats: 2
+:card-ease-factor: 2.6
+:card-next-schedule: 2022-07-29T09:41:39.358Z
+:card-last-reviewed: 2022-07-25T09:41:39.359Z
+:card-last-score: 5
 :END:
 ** {{cloze 12:00}}
