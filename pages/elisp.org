@@ -86,7 +86,20 @@ NAME: router
                ",")
 
 #+END_SRC
-*
+* go结构转换成proto定义
+
+#+BEGIN_SRC sh
+# prel 替换
+  $data =~ s/(\w+)\s+\b(\w+)\W+`json:"([a-z_-]+)".*/$2 $3 = 0;/g;
+  $data =~ s/int\b/int32/g;
+  print "$data";
+
+# elisp 索引字段生成
+  (let ((result "")
+        (ind 0))
+    (dolist (l (string-lines data) result)
+      (if (length> l 2) (setq result (format "%s %s %d;\n" result (substring l 0 -2) (setq ind (1+ ind )))))))
+#+END_SRC
 * - elisp 好用的包  
 	- https://github.com/Wilfred/ht.el  哈希table  
 	- https://github.com/magnars/s.el  string操作  

@@ -1,8 +1,5 @@
 * 编辑
 ** 实用
-:PROPERTIES:
-:collapsed: true
-:END:
 *** #+BEGIN_NOTE
 ^^Option(M)+;^^  注释
 ^^==^^   自动缩进

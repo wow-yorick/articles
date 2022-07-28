@@ -1,7 +1,4 @@
 * 分支操作
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 git remote show origin
 删除远程分支
