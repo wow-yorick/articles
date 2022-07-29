@@ -140,9 +140,6 @@ git commit -m 'update .gitignore'
 
 #+END_SRC
 * git commit之后，撤销commit
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 git reset --soft HEAD^
 #+END_SRC
