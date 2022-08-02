@@ -41,7 +41,7 @@ make && make install
 ** php composer memory limit
 
 #+BEGIN_SRC sh
-php composer memory limit
+COMPOSER_MEMORY_LIMIT=-1 composer update
 #+END_SRC
 * 避坑
 
