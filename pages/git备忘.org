@@ -143,3 +143,9 @@ git commit -m 'update .gitignore'
 ** #+BEGIN_SRC sh
 git reset --soft HEAD^
 #+END_SRC
+* git 暂存
+** #+BEGIN_SRC sh
+git add . 
+git stash save 'test'
+git stash pop
+#+END_SRC
