@@ -32,11 +32,11 @@
             BindingKey 中可以存在两种特殊字符串 * 和 # 做模糊匹配， *匹配一个单词，  ~#匹配多个单词（可以是零个）~
 * #card 大小端存储
 :PROPERTIES:
-:card-last-interval: 4
-:card-repeats: 2
-:card-ease-factor: 2.46
-:card-next-schedule: 2022-07-30T05:38:24.803Z
-:card-last-reviewed: 2022-07-26T05:38:24.805Z
+:card-last-interval: 10.24
+:card-repeats: 3
+:card-ease-factor: 2.56
+:card-next-schedule: 2022-08-12T15:32:12.775Z
+:card-last-reviewed: 2022-08-02T10:32:12.775Z
 :card-last-score: 5
 :END:
 ** 大端为 {{cloze 高尾端}} ，小端为 {{cloze 低尾端}} 
