@@ -1,6 +1,15 @@
+* 清理空间
+:PROPERTIES:
+:collapsed: true
+:END:
+** ``` sh
+docker system prune -a
+```
 * 访问宿主机
-
-#+BEGIN_TIP
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_TIP
 host.docker.internal
 #+END_TIP
 * docker run -itd --name <docker-name> <docker image> bash
@@ -81,6 +90,9 @@ docker build -t runoob/centos:6.7 .
 ***** -t：指定创建的目标镜像名
 ***** . : Dockerfile文件所在目录，可以指定Dockerfile的绝对路径
 * 容器连接
+:PROPERTIES:
+:collapsed: true
+:END:
 ** 容器命名 使用 --name 标识来给容器命名
 
 #+BEGIN_SRC shell
