@@ -124,6 +124,9 @@ Shell本身的文件名
 添加到Shell的各参数值。$1是第1参数、$2是第2参数…
 #+END_EXAMPLE
 * Linux nohup、&、 2>&1是什么？
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 /dev/null 表示空设备文件
 0 表示stdin标准输入
@@ -142,9 +145,6 @@ nohup放在命令的开头，表示不挂起（no hang up），也即，关闭�
 全局替换：sed -i 's/原字符串/新字符串/g' /home/1.txt
 #+END_SRC
 * 抓取流量的方法看看什么进程在执行
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 ngrep -W byline -q -d eth0 host xxxx port 3306
 
@@ -153,9 +153,6 @@ ngrep -W byline -q -d eth0 port 3306
 ngrep -W byline -q -d eth0 port 3306 | grep "SELECT * FROM `users`” | -C 2 = -A 2 -B 2
 #+END_SRC
 * linux rm
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 # 排除文件
 rm -fr `ls | grep -v "elpa"`
@@ -164,3 +161,24 @@ find -size 0 -exec mv {} ~/tmp \;
 
 #+END_SRC
 * [[Tmux]]
+* next tag(git-tag 加一)
+
+#+BEGIN_SRC sh
+  taginc1() {
+      local oldtag=$1
+      # 通过.号分割成数组
+      local arr=(${oldtag//./ })
+      # 获取最后一个元素的索引
+      local ind=$((${#arr[@]}-1))
+      # 获取最后一个元素的值
+      local lastVal=${arr[ind]}
+      # 最后一个元素值+1
+      local newVal=$((lastVal+1))
+      # 新值替换旧值%表示行尾匹配
+      newtag=${oldtag/%$lastVal/$newVal}
+  }
+  tag="v1.100.102.58"
+  taginc1 $tag
+  echo $newtag
+#+END_SRC
+* [[https://www.cnblogs.com/haona_li/p/10334057.html][shell字符串切片]]

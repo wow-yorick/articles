@@ -9,9 +9,6 @@ git branch -d refund-time
 git checkout -b xxx
 #+END_SRC
 * 查看日志
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 git log --oneline --graph --decorate
 一个仓的直线提交图标 
@@ -28,9 +25,6 @@ git log -p 7afd2c5f124a82318e4e7309c997ea4beef66436 src/config/pay.php
 3. 只看某次提交中的某个文件变化，可以直接加上fileName
 #+END_SRC
 * 清空分支(历史提交了敏感信息)慎用
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 我们可以使用 git 自带的 git filter-branch 命令来实现。
 git filter-branch --force --index-filter \
@@ -49,9 +43,6 @@ PATH-TO-YOUR-FILE-WITH-SENSITIVE-DATA 是你需要删除的敏感信息文件名
  	0.	最后，强制更新存储库。git push -f origin master
 #+END_SRC
 * 创建新仓库
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 Command line instructions
 Git global setup

@@ -1,0 +1,7 @@
+* tag号加一
+
+#+BEGIN_SRC perl
+ $data = "v1.20.4"; 
+ $data =~ s/(\d)$/$1+1/e;
+ print "$data";
+#+END_SRC
