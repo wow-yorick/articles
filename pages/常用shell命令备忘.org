@@ -140,11 +140,17 @@ Shell本身的文件名
 nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
 #+END_SRC
 * sed 修改读取的文件内容
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 每行中替换： sed -i 's/原字符串/新字符串/' /home/1.txt
 全局替换：sed -i 's/原字符串/新字符串/g' /home/1.txt
 #+END_SRC
 * 抓取流量的方法看看什么进程在执行
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 ngrep -W byline -q -d eth0 host xxxx port 3306
 
@@ -162,8 +168,10 @@ find -size 0 -exec mv {} ~/tmp \;
 #+END_SRC
 * [[Tmux]]
 * next tag(git-tag 加一)
-
-#+BEGIN_SRC sh
+:PROPERTIES:
+:collapsed: true
+:END:
+** #+BEGIN_SRC sh
   taginc1() {
       local oldtag=$1
       # 通过.号分割成数组

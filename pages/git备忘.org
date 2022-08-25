@@ -140,3 +140,13 @@ git add .
 git stash save 'test'
 git stash pop
 #+END_SRC
+* git tag
+** #+BEGIN_SRC sh
+git tag -l "v1.8.5*" 查找感兴趣的tag
+git tag -a v1.4 -m "my version 1.4" 添加标签
+git push origin v1.5  推tag到远端仓库
+git push origin --tags 推多个tags
+删除标签
+git tag -d v1.4
+git push origin --delete <tagname>
+#+END_SRC
