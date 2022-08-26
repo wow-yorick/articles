@@ -1,7 +1,4 @@
 * 清理空间
-:PROPERTIES:
-:collapsed: true
-:END:
 ** ``` sh
 docker system prune -a
 ```

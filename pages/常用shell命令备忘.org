@@ -190,3 +190,49 @@ find -size 0 -exec mv {} ~/tmp \;
   echo $newtag
 #+END_SRC
 * [[https://www.cnblogs.com/haona_li/p/10334057.html][shell字符串切片]]
+* 取子串及替换
+** #+BEGIN_SRC
+命令                                    解释                           　　 结果
+${file:0:5}            　　　提取最左边的 5 个字节    　　　　　　　　　　　　/dir1
+${file:5:5}            　　　提取第 5 个字节右边的连续 5 个字节    　　　　　/dir2
+${file/dir/path}            将第一个 dir 提换为 path    　　　　　　　　　 /path1/dir2/dir3/my.file.txt
+${file//dir/path}    　　　　将全部 dir 提换为 path    　　　　　　　　　　　/path1/path2/path3/my.file.txt
+${#file}    　　　　　　　　　 获取变量长度    　　　　　　　　　　　　　　　　　27
+#+END_SRC
+* 根据状态为变量赋值
+** [[../assets/image_1661480869983_0.png]]
+
+#+BEGIN_TIP
+一定要分清楚 unset 与 null 及 non-null 这三种赋值状态. 一般而言, : 与 null 有关, 若不带 : 的话, null 不受影响, 若带 : 则连 null 也受影响.
+#+END_TIP
+* 数组
+** #+BEGIN_SRC 
+A="a b c def"   # 定义字符串
+A=(a b c def)   # 定义字符数组
+#+END_SRC
+** [[../assets/image_1661480995554_0.png]]
+* $(( ))与整数运算
+** [[../assets/image_1661481050359_0.png]]
+
+#+BEGIN_QUOTE
+在 $(( )) 中的变量名称,可于其前面加 $ 符号来替换,也可以不用。
+#+END_QUOTE
+* *进制转换*
+** echo ~$((2#110))~
+echo ~$((16#2a))~
+echo ~$((8#11))~
+* *(())重定义变量值*
+** #+BEGIN_SRC sh
+  a=5;b=7
+  ((a++))
+  echo $a
+((a<b));echo $?
+#+END_SRC
+* 取路径、文件名、后缀
+** #+BEGIN_EXAMPLE
+# 是去掉左边(在键盘上 # 在 $ 之左边)
+% 是去掉右边(在键盘上 % 在 $ 之右边)
+单一符号是最小匹配;两个符号是最大匹配
+*是用来匹配不要的字符，也就是想要去掉的那部分
+还有指定字符分隔号，与*配合，决定取哪部分
+#+END_EXAMPLE
