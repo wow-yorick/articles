@@ -159,6 +159,9 @@ ngrep -W byline -q -d eth0 port 3306
 ngrep -W byline -q -d eth0 port 3306 | grep "SELECT * FROM `users`” | -C 2 = -A 2 -B 2
 #+END_SRC
 * linux rm
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 # 排除文件
 rm -fr `ls | grep -v "elpa"`
