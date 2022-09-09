@@ -1,0 +1,44 @@
+* channel的关闭需要注意的事项
+
+#+BEGIN_TIP
+1. 关闭一个未初始化(nil) 的 channel 会产生 panic
+
+2. 重复关闭同一个 channel 会产生 panic
+
+3. 向一个已关闭的 channel 中发送消息会产生 panic
+
+4. 从已关闭的 channel 读取消息不会产生 panic，且能读出 channel 中还未被读取的消息，若消息均已读出，则会读到类型的零值。从一个已关闭的 channel 中读取消息永远不会阻塞，并且会返回一个为 false 的 ok-idiom，可以用它来判断 channel 是否关闭
+
+5. 关闭 channel 会产生一个广播机制，所有向 channel 读取消息的 goroutine 都会收到消息
+#+END_TIP
+* 无缓存的channel
+
+#+BEGIN_NOTE
+从无缓存的 channel 中读取消息会阻塞，直到有 goroutine 向该 channel 中发送消息；同理，向无缓存的 channel 中发送消息也会阻塞，直到有 goroutine 从 channel 中读取消息。
+#+END_NOTE
+
+
+#+BEGIN_TIP
+通过无缓存的 channel 进行通信时，接收者收到数据 happens before 发送者 goroutine 唤醒
+
+#+END_TIP
+* 有缓存的channel
+
+#+BEGIN_TIP
+当缓存未满时，向 channel 中发送消息时不会阻塞，当缓存满时，发送操作将被阻塞，直到有其他 goroutine 从中读取消息；
+
+相应的，当 channel 中消息不为空时，读取消息不会出现阻塞，当 channel 为空时，读取操作会造成阻塞，直到有 goroutine 向 channel 中写入消息。
+#+END_TIP
+* select使用
+
+#+BEGIN_TIP
+1. select 可以同时监听多个 channel 的写入或读取
+
+2. 执行 select 时，若只有一个 case 通过(不阻塞)，则执行这个 case 块
+
+3. 若有多个 case 通过，则随机挑选一个 case 执行
+
+4. 若所有 case 均阻塞，且定义了 default 模块，则执行 default 模块。若未定义 default 模块，则 select 语句阻塞，直到有 case 被唤醒。
+
+5.使用 break 会跳出 select 块。
+#+END_TIP
