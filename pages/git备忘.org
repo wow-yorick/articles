@@ -152,3 +152,8 @@ git push origin --delete <tagname>
 
 git show-ref --tag | grep 'report-v1.1' | awk '{print ":" $2}'  | xargs git push origin
 #+END_SRC
+* 切换源
+
+#+BEGIN_SRC sh
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+#+END_SRC
