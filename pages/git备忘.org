@@ -150,7 +150,7 @@ git push origin --tags 推多个tags
 git tag -d v1.4
 git push origin --delete <tagname>
 
-git show-ref --tag | grep 'report-v1.1' | awk '{print ":" $2}'  | xargs git push origin
+git show-ref --tag | grep 'alistock-v1.' |grep -v 'alistock-v1.0.27' | awk '{print ":" $2}'  | xargs git push origin
 #+END_SRC
 * 切换源
 
