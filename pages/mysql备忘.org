@@ -53,6 +53,14 @@ ALTER TABLE `tickets` ADD INDEX `idx_parent_verify_time` (`parent_user_id`, `ver
 
 -- json查询
 select ext_attr->'$.hb.hb_fq_num'  from orders where parent_user_id=29 and create_time > '2021-01-24 00:00:00' and JSON_EXTRACT(ext_attr,'$.hb.hb_fq_num') >0
+
+-- 增加时间
+update ticket_code
+   set relative_end_time= date_add(relative_end_time, INTERVAL 1 day)
+ where user_id= 1205645
+   and ticket_id in(1132233, 1132235)
+   and created_at between '2022-09-09 10:24:41'
+   and '2022-09-23 09:45:30' 
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
