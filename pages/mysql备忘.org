@@ -58,9 +58,15 @@ select ext_attr->'$.hb.hb_fq_num'  from orders where parent_user_id=29 and creat
 update ticket_code
    set relative_end_time= date_add(relative_end_time, INTERVAL 1 day)
  where user_id= 1205645
-   and ticket_id in(1132233, 1132235)
-   and created_at between '2022-09-09 10:24:41'
-   and '2022-09-23 09:45:30' 
+   and created_at between '2022-09-16 16:49:29'
+   and '2022-09-25 11:31:52' 
+   and ticket_id in(xxx) and status=1
+   
+-- 查询需要增加时间的数据
+select * from `ticket_code`  where user_id= 1205645
+   and ticket_id in(1132261)
+  and created_at between '2022-09-22 10:33:23'
+   and '2022-09-25 10:56:27' and `ticket_code` ='213241593263646508'
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
