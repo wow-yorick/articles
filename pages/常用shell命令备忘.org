@@ -3,6 +3,11 @@
 // 查看域名属性
 nslookup www.baidu.com
 
+date "+%Y%m%d%H%M%S" #年月日时分秒24小时制 20211013113617
+
+## 文本替换
+sed "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list > tt.log
+
 // brew 检查
 brew doctor --verbose
 
@@ -41,10 +46,18 @@ netstat - atulnp会显示所有端口和所有对应的程序，用grep管道可
     -n ：port number， 用端口号来显示
     -l ：listening，列出当前监听服务
     -p ：program，列出服务程序的PID
+    
+#多行导入数据
+cat << EOF >abcd.txt
+ss
+ddd
+EOF
 #+END_SRC
 * find 查询
 ** #+BEGIN_EXAMPLE
 find . -type f -exec grep  -nH --null -e xxxx {} +
+
+# 比较两个字符串时还可以用操作符=~，符号右边的string2可以被视为是正则表达式匹配string1，如果匹配，返回真，否则返回假。
 
 --递归查找目录下含有该字符串的所有文件
 grep -rn "data_chushou_pay_info"  /home/hadoop/nisj/automationDemand/
@@ -76,8 +89,12 @@ find /home/hadoop/nisj/automationDemand/ -type f -name '*.py'|xargs grep -n 'dat
 
 查找系统中所有文件长度为 0 的普通文件，并列出它们的完整路径
 # find / -type f -size 0 -exec ls -l {} \;
+grep -v  # 只显示不匹配的行
 #+END_EXAMPLE
 * 日志处理
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
 
@@ -138,6 +155,7 @@ Shell本身的文件名
 2>&1 >file ：错误输出到终端，标准输出重定向到文件file，等于 > file 2>&1(标准输出重定向到文件，错误重定向到标准输出)。
 & 放在命令到结尾，表示后台运行，防止终端一直被某个进程占用，这样终端可以执行别到任务，配合 >file 2>&1可以将log保存到某个文件中，但如果终端关闭，则进程也停止运行。如 command > file.log 2>&1 & 。
 nohup放在命令的开头，表示不挂起（no hang up），也即，关闭终端或者退出某个账号，进程也继续保持运行状态，一般配合&符号一起使用。如nohup command &。
+/dev/null 是一个文件，所有传给它的东西都丢弃掉
 #+END_SRC
 * sed 修改读取的文件内容
 :PROPERTIES:
@@ -194,6 +212,9 @@ find -size 0 -exec mv {} ~/tmp \;
 #+END_SRC
 * [[https://www.cnblogs.com/haona_li/p/10334057.html][shell字符串切片]]
 * 取子串及替换
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC
 命令                                    解释                           　　 结果
 ${file:0:5}            　　　提取最左边的 5 个字节    　　　　　　　　　　　　/dir1
@@ -203,18 +224,27 @@ ${file//dir/path}    　　　　将全部 dir 提换为 path    　　　　　
 ${#file}    　　　　　　　　　 获取变量长度    　　　　　　　　　　　　　　　　　27
 #+END_SRC
 * 根据状态为变量赋值
+:PROPERTIES:
+:collapsed: true
+:END:
 ** [[../assets/image_1661480869983_0.png]]
 
 #+BEGIN_TIP
 一定要分清楚 unset 与 null 及 non-null 这三种赋值状态. 一般而言, : 与 null 有关, 若不带 : 的话, null 不受影响, 若带 : 则连 null 也受影响.
 #+END_TIP
 * 数组
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC 
 A="a b c def"   # 定义字符串
 A=(a b c def)   # 定义字符数组
 #+END_SRC
 ** [[../assets/image_1661480995554_0.png]]
 * $(( ))与整数运算
+:PROPERTIES:
+:collapsed: true
+:END:
 ** [[../assets/image_1661481050359_0.png]]
 
 #+BEGIN_QUOTE
@@ -239,3 +269,37 @@ echo ~$((8#11))~
 *是用来匹配不要的字符，也就是想要去掉的那部分
 还有指定字符分隔号，与*配合，决定取哪部分
 #+END_EXAMPLE
+* 目录复制操作
+
+#+BEGIN_SRC shell
+  frompath=/Users/yudong/Downloads/0627
+  todir=dataxxx
+
+  finddir=data-backup
+  topath=/Users/yudong/workspace/goproject/repo-coco/coco-applyment-import/
+  mkdir -p ${topath}${todir}
+  cp -a ${topath}${finddir}/人工修复.xlsx ${topath}${todir}/
+  cp -a ${topath}${finddir}/门店信息表.xlsx ${topath}${todir}/
+  cp -a ${topath}${finddir}/casher ${topath}${todir}/
+  cp -a ${topath}${finddir}/indoor ${topath}${todir}/
+  cp -a ${topath}${finddir}/outside ${topath}${todir}/
+
+  for loop in ${frompath}/*
+  do
+      if test -f $loop
+      then
+          echo $loop 是文件
+          continue
+      fi
+      target=$(dirname $(find ${topath}${finddir}  -name `basename $loop` -type d))
+      if test ${#target} -eq 1
+      then
+          echo "no find:$loop"
+          continue
+      fi
+      mkdir -p ${target/$finddir/$todir} && cp -a $loop  ${target/$finddir/$todir}
+      fatherdir=`dirname $target`
+      cp -a $fatherdir/*.xlsx ${fatherdir/$finddir/$todir}
+      echo "to ${target/$finddir/$todir}"
+  done
+#+END_SRC
