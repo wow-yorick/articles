@@ -51,4 +51,8 @@ COMPOSER_MEMORY_LIMIT=-1 composer update
 当下标为字符时， ~array＋array~ 仍然把最先出现的值作为最终结果返回，而把后面的数组拥有相同键名的那些值“抛弃”掉，但 ~array_merge()~ 此时会覆盖掉前面相同键名的值. 
 
 ~in_array~ 第三个参数严格模式
+
+精度丢失问题:  浮点数计算后的值转为int，会产生精度丢失  如: 
+$ret = 19.9*100;
+var_dump((int)$ret);   结果为1989 
 #+END_CAUTION
