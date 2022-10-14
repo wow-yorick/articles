@@ -303,3 +303,8 @@ echo ~$((8#11))~
       echo "to ${target/$finddir/$todir}"
   done
 #+END_SRC
+* coreutils
+
+#+BEGIN_NOTE
+https://formulae.brew.sh/formula/coreutils
+#+END_NOTE
