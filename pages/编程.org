@@ -1,6 +1,5 @@
 * 思想
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 按愿望编程
 ** 数据的使用与表示分离
@@ -21,6 +20,7 @@
 忽略细节
 迭代计算
 递归计算
+** 环境的解释[[Oct 18th, 2022]]
 * rabbitMQ
 :PROPERTIES:
 :collapsed: true
