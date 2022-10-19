@@ -1,4 +1,7 @@
 * 编辑
+:PROPERTIES:
+:collapsed: true
+:END:
 ** 实用
 *** #+BEGIN_NOTE
 ^^Option(M)+;^^  注释
@@ -132,6 +135,9 @@ M-y  召回历史
 C-x u 撤销(UNDO)  或  C-_ （数字参数表示的是次数）
 #+END_NOTE
 * 帮助
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_NOTE
 - ^^C-h ?^^         :得到关于帮助的完整列表
 - ^^M-x apropos^^    :想做一件事情，但是不知道如何去做。可以用上面的命令，然后关键字甚至是正则表达式， Emacs就会搜索帮助中一切相关的信息。会得到一个列表，每一项都有超链接和简要的说明。
