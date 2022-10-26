@@ -67,6 +67,18 @@ select * from `ticket_code`  where user_id= 1205645
    and ticket_id in(1132261)
   and created_at between '2022-09-22 10:33:23'
    and '2022-09-25 10:56:27' and `ticket_code` ='213241593263646508'
+   
+-- json 字段值设置
+UPDATE ticket_code 
+SET `ext_attr` = JSON_SET(
+	`ext_attr`,
+	'$.is_claim',
+	'Y',
+	'$.claim_time',
+	date_format( `created_at`, '%Y-%m-%d %H:%i:%s' ) 
+) 
+WHERE
+	ticket_code IN ( "210603483857137278" )
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
