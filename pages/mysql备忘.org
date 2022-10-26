@@ -79,6 +79,13 @@ SET `ext_attr` = JSON_SET(
 ) 
 WHERE
 	ticket_code IN ( "210603483857137278" )
+    
+    update `benefit`
+SET `ext_attr` = JSON_SET(
+	`ext_attr`,
+	'$.category',
+	'COCO_ENJOY_CARD'
+)  WHERE `ext_attr` ->'$.category'='Co享卡'
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
