@@ -1,4 +1,7 @@
 * cargo相关
+:PROPERTIES:
+:collapsed: true
+:END:
 ** cargo创建项目
 
 #+BEGIN_SRC shell
@@ -11,6 +14,9 @@ cargo new project_name --vcs=git
 会在target/release目录下
 ** cargo update 更新依赖的索引?
 * 语言相关
+:PROPERTIES:
+:collapsed: true
+:END:
 ** trait 相当于其他语言中的接口
 ** 随机数生成
 
@@ -18,3 +24,7 @@ cargo new project_name --vcs=git
 let secret_number = rand::thread_rng().gen_range(1,101)
 #+END_SRC
 *** 包含1 不包含101
+* 阿里云ssl
+** #+BEGIN_SRC sh
+* and_topic: "xxxx" Iselect method, count(*) as num group by method order by num desc
+#+END_SRC
