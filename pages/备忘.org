@@ -27,4 +27,6 @@ let secret_number = rand::thread_rng().gen_range(1,101)
 * 阿里云ssl
 ** #+BEGIN_SRC sh
 * and_topic: "xxxx" Iselect method, count(*) as num group by method order by num desc
+
+* | select traceID,count(*) as cnt,count_if(attribute like '%http%' and parentSpanID = '') as httpnum,count_if(attribute like '%mysql%') as mysqlnum FROM log group by traceID having cnt > 50 and httpnum > 0 and mysqlnum > 10 order by cnt desc limit 1000
 #+END_SRC
