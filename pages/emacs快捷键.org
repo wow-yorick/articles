@@ -1,6 +1,5 @@
 * 编辑
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 实用
 *** #+BEGIN_NOTE
