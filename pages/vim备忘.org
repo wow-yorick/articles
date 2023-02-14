@@ -5,6 +5,16 @@
 # 获取括号匹配的文本进行替换
 :405,416s/.*\(string\|int\)\W+`json:"\([a-z_]+\)".*/\1 \2=0;/g
 #+END_SRC
+* 驼峰转下划线
+
+#+BEGIN_SRC vim
+# 1分割单词
+:set smartcase
+:%s/\([^ .*+-]\)\([A-Z].\)/\1_\2/g
+# 2首字母小写
+ggguG
+nG gu mG - n,m是行区间
+#+END_SRC
 * 编辑快捷键
 
 #+BEGIN_NOTE
