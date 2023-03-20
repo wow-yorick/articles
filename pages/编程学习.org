@@ -1,1 +1,2 @@
 * [[https://s2.51cto.com/images/blog/202106/25/792f265da6343c4383af0ae42979bfbc.jpeg?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=/format,webp/resize,m_fixed,w_1184][程序员应该怎么学数学？_数据结构_05]]
+* 函数式编程风格倾向于最小化可变状态的数量来使代码更简洁
