@@ -5,7 +5,6 @@
 ** 编译时使用具体类型，将通用代码转换为特定代码
 * trait: 定义共享的行为
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 定义trait
 
@@ -143,7 +142,6 @@ impl<T: Display + PartialOrd> Pair<T> {
 #+END_SRC
 * 生命周期与引用有效性
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 生命周期注解并不改变任何任何引用的生命周期的长短
 ** 生命周期注解描述了多个引用生命周期相互的关系，而不影响其生命周期
@@ -196,5 +194,3 @@ where
 }
 #+END_SRC
 *** 生命周期也是泛型，所以生命周期参数 'a 和泛型类型参数 T 都位于函数名后的同一尖括号列表中
-***
-**
