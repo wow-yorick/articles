@@ -2,7 +2,6 @@
 ** 快速记忆必须是强关联强逻辑，只有知道为什么才最重要，才是从逻辑规律去理解，真正理解了，才能放弃死记硬背
 ** 词缀
 :PROPERTIES:
-:collapsed: true
 :END:
 *** 后缀
 **** al 形容词后缀
@@ -24,12 +23,10 @@
 ****
 ** 元音大推移
 :PROPERTIES:
-:collapsed: true
 :END:
 *** 元音互换，增减
 ** 维尔纳定律
 :PROPERTIES:
-:collapsed: true
 :END:
 *** U= V =W (字母 u 和 w 由v派生)
 **** 词根 nov = new
@@ -56,7 +53,6 @@
 ** 格林定律
 ** 像形字母记忆
 :PROPERTIES:
-:collapsed: true
 :END:
 *** A = 牛角
 *** B = 房子
