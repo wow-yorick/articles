@@ -26,7 +26,6 @@
 ** 对于带缓冲的channel，对于channel的第K个接收完成操作发生在第K+C个发送操作完成之前，其中C是channel的缓存大小
 * go 接受者
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_IMPORTANT
 go 会把指针进行隐式转换得到 value，但反过来则不行
@@ -35,7 +34,6 @@ go 会把指针进行隐式转换得到 value，但反过来则不行
 #+END_IMPORTANT
 * 读写锁
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 它允许任意读操作同时进行
 ** 同一时刻，只允许有一个写操作进行
@@ -49,14 +47,12 @@ go 会把指针进行隐式转换得到 value，但反过来则不行
 ** 而对一个未被读锁定的读写锁进行读解锁却不会如此
 * 单元测试
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_TIP
 运行单个单元测试 ~go test -v fixture_test.go -test.run TestStockCouponFixtures~
 #+END_TIP
 * go代理配置
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_TIP
 go env -w GOPROXY=https://goproxy.verystar.net,https://goproxy.cn,direct
