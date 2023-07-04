@@ -93,7 +93,6 @@ grep -v  # 只显示不匹配的行
 #+END_EXAMPLE
 * 日志处理
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
