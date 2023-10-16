@@ -62,7 +62,6 @@ go env -w GOSUMDB=sum.golang.google.cn
 #+END_TIP
 * ide工具
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_EXAMPLE
 ;; go get -u github.com/mdempsky/gocode
