@@ -1,1 +1,3 @@
 * 一下这么多天没有记录了
+* *** 泛化关系 -- eg：自行车是车、猫是动物
+** [[https://design-patterns.readthedocs.io/zh_CN/latest/_images/uml_generalization.jpg][_images/uml_generalization.jpg]]
