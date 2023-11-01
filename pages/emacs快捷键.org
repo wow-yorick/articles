@@ -13,7 +13,6 @@
 #+END_NOTE
 ** 文件 缓冲区操作
 :PROPERTIES:
-:collapsed: true
 :END:
 *** #+BEGIN_NOTE
 C-x C-f 寻找一个文件
@@ -135,7 +134,6 @@ C-x u 撤销(UNDO)  或  C-_ （数字参数表示的是次数）
 #+END_NOTE
 * 帮助
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_NOTE
 - ^^C-h ?^^         :得到关于帮助的完整列表
