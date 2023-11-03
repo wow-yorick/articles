@@ -82,5 +82,11 @@ go env -w GOSUMDB=sum.golang.google.cn
 ** [[http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/][emacs配置]]
 ** [[https://github.com/brantou/emacs-go-tag][emacs-go-tag插件]]
 * [[channel]]
+* 编码注意事项
+#+BEGIN_QUOTE
+- rpc :: rpc的service 如果没有结果返回不能直接返回nil
+- slice ::  append 可以只声明，然后直接添加值 =最好还是先初始化,养成好习惯=
+- map :: 只声明没初始化不能设值
+#+END_QUOTE
 * 知识图谱
 [[../assets/Go知识图谱_1665390333989_0.png]]

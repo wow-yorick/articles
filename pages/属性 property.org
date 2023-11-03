@@ -1,2 +1,4 @@
 * ^^C-c C-x p^^ 设置属性
 * ^^C-c C-c d^^ 移除属性
+* ^^C-c C-x C-c^^ 属性展示
+** #+COLUMNS: %ITEM

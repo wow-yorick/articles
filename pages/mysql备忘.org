@@ -98,3 +98,12 @@ SET `ext_attr` = JSON_SET(
 2. 不冗余原则
 3. 最大选择性原则
 **
+* 无锁加字段
+
+#+BEGIN_QUOTE
+/* 请确认以下SQL符合您的变更需求，务必确认无误后再提交执行 */
+ALTER TABLE `promotion_order_sku`
+    ADD COLUMN `row_type`           varchar(64) NOT NULL DEFAULT 'GOODS' COMMENT '商品行类型： GOODS单品(默认) SET套餐',
+    ADD COLUMN `spu_name`           varchar(64) NOT NULL DEFAULT '' COMMENT 'SPU名称'
+, ALGORITHM=INSTANT;
+#+END_QUOTE
