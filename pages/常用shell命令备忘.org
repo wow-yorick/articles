@@ -105,7 +105,6 @@ cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print
 * [[git备忘]]
 * linux shell中$0,$?,$!等的特殊用法
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_EXAMPLE
 （1）$$
