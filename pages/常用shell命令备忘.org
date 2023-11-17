@@ -306,3 +306,8 @@ echo ~$((8#11))~
 #+BEGIN_NOTE
 https://formulae.brew.sh/formula/coreutils
 #+END_NOTE
+* 服务器上下载文件到本地
+
+#+BEGIN_QUOTE
+scp -P 22 -o 'ProxyJump=yorick.yuan@vskrwhonng-public.bastionhost.aliyuncs.com:60022' sysadmin@172.16.222.107:/data/payjob/uploads/reports/1100339/xml/IACC_MP_20231108.xml /Users/yudong/Downloads
+#+END_QUOTE

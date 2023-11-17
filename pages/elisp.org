@@ -110,3 +110,5 @@ NAME: router
 	- https://github.com/volrath/treepy.el 递归和/或迭代地遍历树状数据结构的泛型函数  
 	- https://github.com/NicolasPetton/seq.el  sequence  
 	- https://github.com/tali713/esxml html or xml dom
+* auth-source
+** 多个应用程序共享单个配置(在Emacs和文件中)以方便用户的一种方式
