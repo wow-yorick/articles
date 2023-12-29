@@ -88,6 +88,26 @@ SET `ext_attr` = JSON_SET(
 	'$.category',
 	'COCO_ENJOY_CARD'
 )  WHERE `ext_attr` ->'$.category'='Co享卡'
+
+ALTER TABLE `promotion_refund_product` CHANGE `promotion_name` `promotion_name` VARCHAR(128)  CHARACTER SET utf8mb4  COLLATE utf8mb4_0900_ai_ci  NOT NULL  DEFAULT '';
+#+END_SRC
+* 查询表结构
+
+#+BEGIN_SRC mysql
+select col.table_name,
+       col.column_name,
+       col.column_type,
+       case when col.character_maximum_length is not null
+            then col.character_maximum_length
+            else col.numeric_precision end as max_length,
+       col.IS_NULLABLE,
+       col.COLUMN_DEFAULT,
+       col.COLUMN_COMMENT
+from information_schema.columns col
+where col.table_schema  in ('sephora_coupon')
+order by col.table_schema,
+         col.table_name,
+         col.ordinal_position;
 #+END_SRC
 * 知识点
 ** utf8mb4 兼容 utf8，且比 utf8 能表示更多的字符。
