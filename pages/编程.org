@@ -41,11 +41,11 @@
 *** ~#~ 代表零个或者多个词
 * #card 大小端存储
 :PROPERTIES:
-:card-last-interval: 84.1
-:card-repeats: 5
-:card-ease-factor: 2.76
-:card-next-schedule: 2023-09-01T05:51:26.311Z
-:card-last-reviewed: 2023-06-09T03:51:26.312Z
+:card-last-interval: 267.62
+:card-repeats: 6
+:card-ease-factor: 2.86
+:card-next-schedule: 2024-10-11T21:25:27.466Z
+:card-last-reviewed: 2024-01-18T07:25:27.466Z
 :card-last-score: 5
 :END:
 ** 大端为 {{cloze 高尾端}} ，小端为 {{cloze 低尾端}} 
