@@ -7,5 +7,6 @@
 :card-next-schedule: 2024-12-07T07:25:33.108Z
 :card-last-reviewed: 2024-01-18T07:25:33.109Z
 :card-last-score: 5
+:collapsed: true
 :END:
 ** {{cloze 12:00}}
