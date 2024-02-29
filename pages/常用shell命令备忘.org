@@ -3,6 +3,8 @@
 // 查看域名属性
 nslookup www.baidu.com
 
+https://ipinfo.ing/
+
 date "+%Y%m%d%H%M%S" #年月日时分秒24小时制 20211013113617
 
 ## 文本替换
