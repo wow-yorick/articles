@@ -54,6 +54,11 @@ cat << EOF >abcd.txt
 ss
 ddd
 EOF
+
+生成pkcs1需要用-traditional再转一下
+key_size=2048
+openssl genpkey -algorithm RSA -outform PEM -out private_key.pem -pkeyopt rsa_keygen_bits:$key_size
+openssl pkey -in private_key.pem -out private_key_pkcs1.pem -traditional
 #+END_SRC
 * find 查询
 ** #+BEGIN_EXAMPLE
