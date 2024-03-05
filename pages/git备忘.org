@@ -98,7 +98,6 @@ fork 项目为  `https://github.com/_your/_project.git`
 #+END_SRC
 * git仓库拉代码设置代理
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_SRC sh
 git config --global http.proxy
@@ -159,6 +158,11 @@ git show-ref --tag | grep 'alistock-v1.' |grep -v 'alistock-v1.0.27' | awk '{pri
 
 #+BEGIN_SRC sh
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+#+END_SRC
+* 取消合并
+
+#+BEGIN_SRC sh
+git merge --abort
 #+END_SRC
 * 速查
 [[../assets/git-quickly-search_1665390424478_0.jpg]]
