@@ -61,6 +61,9 @@ openssl genpkey -algorithm RSA -outform PEM -out private_key.pem -pkeyopt rsa_ke
 openssl pkey -in private_key.pem -out private_key_pkcs1.pem -traditional
 #+END_SRC
 * find 查询
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_EXAMPLE
 find . -type f -exec grep  -nH --null -e xxxx {} +
 
@@ -100,6 +103,7 @@ grep -v  # 只显示不匹配的行
 #+END_EXAMPLE
 * 日志处理
 :PROPERTIES:
+:collapsed: true
 :END:
 ** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
@@ -248,7 +252,6 @@ A=(a b c def)   # 定义字符数组
 ** [[../assets/image_1661480995554_0.png]]
 * $(( ))与整数运算
 :PROPERTIES:
-:collapsed: true
 :END:
 ** [[../assets/image_1661481050359_0.png]]
 
@@ -315,6 +318,9 @@ https://formulae.brew.sh/formula/coreutils
 #+END_NOTE
 * 服务器上下载文件到本地
 
-#+BEGIN_QUOTE
+#+BEGIN_SRC
 scp -P 22 -o 'ProxyJump=yorick.yuan@vskrwhonng-public.bastionhost.aliyuncs.com:60022' sysadmin@172.16.222.107:/data/payjob/uploads/reports/1100339/xml/IACC_MP_20231108.xml /Users/yudong/Downloads
-#+END_QUOTE
+#+END_SRC
+* #+BEGIN_SRC
+${ZSH_CUSTOM:-~/.oh-my-zsh/custom} 这个表达式的意思是：使用环境变量 ~ZSH_CUSTOM~ 指定的路径作为 Oh My Zsh 的自定义插件和主题的存放位置；如果 ~ZSH_CUSTOM~ 没有被设置，则默认使用 ~~/.oh-my-zsh/custom~ 作为存放路径。
+#+END_SRC
