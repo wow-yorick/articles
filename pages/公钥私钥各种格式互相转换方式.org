@@ -1,0 +1,62 @@
+* # RSA公钥私钥各种格式转换
+生成公钥和私钥
+```
+openssl genrsa -out rsa_private_key_pkcs8.pem  2048
+openssl rsa -in rsa_private_key_pkcs8.pem -pubout -out public_key.pem
+```
+> openssl 3.0 默认生成的是pkcs8格式，如果需要默认生成pkcs1则需要添加-traditional参数
+* pkcs1 to pkcs8
+```sh
+openssl pkcs8 -topk8 -inform PEM -in rsa_private_key.pem -outform PEM -nocrypt -out rsa_private_key_pkcs8.pem
+```
+* pkcs8 to pkcs1
+```sh
+openssl rsa  -in rsa_private_key_pkcs8.pem  -out rsa_private_key.pem
+```
+* 私钥导出公钥
+```sh
+openssl rsa -in rsa_private_key.pem -pubout -out public_key.pem
+```
+* 查看证书序号
+```sh
+openssl rsa -in apiclient_cert.pem -text -noout -serial
+```
+* 公钥PKCS8转PKCS1
+```sh
+openssl rsa -pubin -in public_key_pkcs1.pem -RSAPublicKey_out
+```
+* rsa pem私钥转换为der
+```sh
+openssl rsa -outform der -in pkcs8.pem | base64
+```
+* x509证书 pem私钥转换为der
+```sh
+openssl x509 -outform der -in pkcs8.pem | base64
+```
+* rsa pem公钥转为der
+```sh
+openssl rsa -pubin -outform DER -in public_key.pem | base64
+```
+* x509证书 pem公钥转换为der
+```sh
+openssl x509 -pubin -outform DER -in public_key.pem | base64
+```
+* rsa der公钥转换为pem
+```sh
+cat public_key | base64 --decode > public_key.der
+openssl rsa -pubin -inform DER -in public_key.der -outform PEM -out public_key.pem
+```
+* rsa der私钥转换为pem
+```
+cat pkcs8_private_key | base64 --decode pkcs8.der
+openssl rsa -inform DER -in pkcs8.der -outform PEM -out pkcs8.pem
+```
+* > 使用支付宝工具生成的密钥是der格式经过base64的格式，因此我们要先用base64解码之后才能得到真正的der格式文件，然后就可以转换为我们常见的pem格式
+* pem格式其实就是der格式经过base64编码之后，按照64个字符换行，然后加上头`-----BEGIN xxx`头，其中：
+`-----BEGIN PUBLIC KEY-----`头代表PKCS8格式
+`-----BEGIN RSA PUBLIC KEY-----`头代表PKCS1格式
+* 后续如无意外，我们都默认推荐使用PKCS8格式，因为openssl 3已经默认输出PKCS8格式的密钥，并且将PKCS1格式的私钥转换为DER格式之后默认也是输出PKCS8
+* 例如，如下命令输入的是PKCS1格式的私钥，最终得到的是PKCS8的der私钥，再转回去也是PKCS8
+* ```
+openssl rsa -outform der -in pkcs1.pem | base64
+```
