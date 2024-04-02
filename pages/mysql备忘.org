@@ -13,6 +13,10 @@
 #+BEGIN_SRC sql
 -- 今天
 date_format(now(),'%Y-%m-%d 00:00:00')
+-- 创建索引
+CREATE UNIQUE INDEX idx_requst_sn_action_type ON benefit_card_action(request_sn, action_type) USING BTREE;
+CREATE INDEX idx_card_id ON benefit_card_action(card_id) USING BTREE;
+
 -- 查询表结构信息
 SELECT
 	column_name,
