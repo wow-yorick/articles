@@ -324,3 +324,10 @@ scp -P 22 -o 'ProxyJump=yorick.yuan@vskrwhonng-public.bastionhost.aliyuncs.com:6
 * #+BEGIN_SRC
 ${ZSH_CUSTOM:-~/.oh-my-zsh/custom} 这个表达式的意思是：使用环境变量 ~ZSH_CUSTOM~ 指定的路径作为 Oh My Zsh 的自定义插件和主题的存放位置；如果 ~ZSH_CUSTOM~ 没有被设置，则默认使用 ~~/.oh-my-zsh/custom~ 作为存放路径。
 #+END_SRC
+* 树莓派进入
+
+#+BEGIN_SRC sh
+ssh pi@raspberrypi.local
+123456
+su 密码 qq2587011
+#+END_SRC
