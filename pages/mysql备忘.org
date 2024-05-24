@@ -11,6 +11,11 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+-- 增加字段
+ALTER TABLE benefit_card_fulfillment_product
+ADD COLUMN `fulfillment_request_sn` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '履约请求号',
+ADD COLUMN `package_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '包ID';
+
 -- 今天
 date_format(now(),'%Y-%m-%d 00:00:00')
 -- 创建索引
