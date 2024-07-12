@@ -10,6 +10,9 @@ git checkout -b xxx
 
 #+END_SRC
 * 查看日志
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 git log --oneline --graph --decorate
 一个仓的直线提交图标 
