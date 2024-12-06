@@ -4,7 +4,6 @@ docker system prune -a
 ```
 * 访问宿主机
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_TIP
 host.docker.internal
@@ -88,7 +87,6 @@ docker build -t runoob/centos:6.7 .
 ***** . : Dockerfile文件所在目录，可以指定Dockerfile的绝对路径
 * 容器连接
 :PROPERTIES:
-:collapsed: true
 :END:
 ** 容器命名 使用 --name 标识来给容器命名
 
