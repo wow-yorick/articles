@@ -62,7 +62,6 @@ openssl pkey -in private_key.pem -out private_key_pkcs1.pem -traditional
 #+END_SRC
 * find 查询
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_EXAMPLE
 find . -type f -exec grep  -nH --null -e xxxx {} +
@@ -103,7 +102,6 @@ grep -v  # 只显示不匹配的行
 #+END_EXAMPLE
 * 日志处理
 :PROPERTIES:
-:collapsed: true
 :END:
 ** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
