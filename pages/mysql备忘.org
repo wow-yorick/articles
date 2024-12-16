@@ -37,10 +37,12 @@ SELECT
 -- json字段查询
 select * from benefit WHERE ext_attr->'$.category' like '%CARDD %';
 select *,JSON_EXTRACT(ext_attr,'$.sodexo_mid') as json_sodexo_mid from stores where ext_attr -> '$.sodexo_mid' is not null
--- 更新字段
+
 UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=10010235;
 -- update stores set ext_attr = JSON_OBJECT("abc","deb") where store_id=3404975; // 值为null时需要用json_object 
+-- 更新字段
 -- update stores set ext_attr = JSON_SET(ext_attr, '$.dosomething', "21021842") where store_id=3404975;
+UPDATE ticket_code SET ext_attr = JSON_SET(ext_attr, '$.refund_sn', order_sn)  where order_sn in("aaa","bbb") and `verify_app_id` =99
 
 update ticket_version set ext_attr = JSON_MERGE_PATCH(ext_attr,'{"commission_rate":2.5}') where ticket_id  in (1119847)
 
