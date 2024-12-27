@@ -11,6 +11,18 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+-- json字段数组类型增加对象元素
+UPDATE ticket_data 
+SET value_list = JSON_ARRAY_APPEND(
+	value_list,
+	'$',
+	JSON_OBJECT( "name", "企微券（全国）", "value", "QiyeWX-A1" ) 
+) 
+WHERE
+	`item_field` = 'promotion_id' 
+	AND item_type = 'select' 
+	AND ticket_id IN ( 1138821, 1138815, 1138818 )
+
 -- 增加字段
 ALTER TABLE benefit_card_fulfillment_product
 ADD COLUMN `fulfillment_request_sn` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '履约请求号',
