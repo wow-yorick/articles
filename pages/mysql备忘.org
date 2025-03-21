@@ -11,6 +11,11 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+-- 删除单元测试实例的测试库
+SELECT CONCAT('DROP DATABASE `', schema_name, '`;') 
+FROM information_schema.schemata 
+WHERE schema_name NOT IN ('mysql', 'information_schema', 'performance_schema', 'sys')  and schema_name like '%test_%';
+
 -- json字段数组类型增加对象元素
 UPDATE ticket_data 
 SET value_list = JSON_ARRAY_APPEND(
