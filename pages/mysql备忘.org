@@ -11,6 +11,11 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+-- 删除单元测试实例的测试库
+SELECT CONCAT('DROP DATABASE `', schema_name, '`;') 
+FROM information_schema.schemata 
+WHERE schema_name NOT IN ('mysql', 'information_schema', 'performance_schema', 'sys')  and schema_name like '%test_%';
+
 -- json字段数组类型增加对象元素
 UPDATE ticket_data 
 SET value_list = JSON_ARRAY_APPEND(
@@ -28,7 +33,96 @@ ALTER TABLE benefit_card_fulfillment_product
 ADD COLUMN `fulfillment_request_sn` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '履约请求号',
 ADD COLUMN `package_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '包ID';
 
+ALTER TABLE history_refunds
+ADD COLUMN `seller` varchar(100) NOT NULL DEFAULT '' COMMENT '商户号' after parent_user_id;
+
 -- 今天
+date_format(now(),'%Y-%m-%d 00:00:00')
+-- 创建索引
+CREATE UNIQUE INDEX idx_requst_sn_action_type ON benefit_card_action(request_sn, action_type) USING BTREE;
+CREATE INDEX idx_card_id ON benefit_card_action(card_id) USING BTREE;
+
+-- 查询表结构信息
+SELECT
+	column_name,
+		column_comment,
+		data_type
+	FROM
+	information_schema.COLUMNS
+	WHERE
+	table_name = 'report'
+	and table_schema='verypay_eticket'
+	ORDER BY ordinal_position;
+    
+-- json字段查询
+select * from benefit WHERE ext_attr->'$.category' like '%CARDD %';
+select *,JSON_EXTRACT(ext_attr,'$.sodexo_mid') as json_sodexo_mid from stores where ext_attr -> '$.sodexo_mid' is not null
+
+UPDATE benefit SET ext_attr='{"category": "COCO_ENJOY_CARD"}' WHERE user_id=10010235;
+-- update stores set ext_attr = JSON_OBJECT("abc","deb") where store_id=3404975; // 值为null时需要用json_object 
+-- 更新字段
+-- update stores set ext_attr = JSON_SET(ext_attr, '$.dosomething', "21021842") where store_id=3404975;
+UPDATE ticket_code SET ext_attr = JSON_SET(ext_attr, '$.refund_sn', order_sn)  where order_sn in("aaa","bbb") and `verify_app_id` =99
+
+update ticket_version set ext_attr = JSON_MERGE_PATCH(ext_attr,'{"commission_rate":2.5}') where ticket_id  in (1119847)
+
+-- 时间格式化
+date_format( created_at, '%Y-%m-%d' ) as days
+-- 时间格式化为 “YYYY-MM-DD”
+SELECT date_format( createTime,'%Y-%m-%d') AS createTime FROM TABLE
+
+-- delete语句
+DELETE FROM table_name [WHERE Clause]
+
+-- insert
+INSERT INTO `belong_merchant`(`user_id`,`updated_at`) VALUES (400094,now());
+
+-- select insert
+insert into verypay_coco.applyment_hz (branch_id_main,registeredenterprise,status,applyment_state,finish_time,updated_at,created_at)
+select store_sn,registeredenterprise,1 as status,applyment_state,finished_at,updated_at,created_at from verypay_ext.applyment where registeredenterprise in ('北京多绒宝珍水餐饮管理有限公司','淮安兆沷餐饮管理有限公司','上海轩轾餐饮管理有限公司') -- 无
+
+-- mysql8 无锁加索引
+ALTER TABLE `tickets` ADD INDEX `idx_parent_verify_time` (`parent_user_id`, `verify_time`), ALGORITHM=INPLACE, LOCK=NONE;
+
+-- json查询
+select ext_attr->'$.hb.hb_fq_num'  from orders where parent_user_id=29 and create_time > '2021-01-24 00:00:00' and JSON_EXTRACT(ext_attr,'$.hb.hb_fq_num') >0
+
+-- 增加时间
+update ticket_code
+   set relative_end_time= date_add(relative_end_time, INTERVAL 1 day)
+ where user_id= 1205645
+   and created_at between '2022-09-16 16:49:29'
+   and '2022-09-25 11:31:52' 
+   and ticket_id in(xxx) and status=1
+   
+-- 查询需要增加时间的数据
+select * from `ticket_code`  where user_id= 1205645
+   and ticket_id in(1132261)
+  and created_at between '2022-09-22 10:33:23'
+   and '2022-09-25 10:56:27' and `ticket_code` ='213241593263646508'
+   
+-- json 字段值设置
+UPDATE ticket_code 
+SET `ext_attr` = JSON_SET(
+	`ext_attr`,
+	'$.is_claim',
+	'Y',
+	'$.claim_time',
+	date_format( `created_at`, '%Y-%m-%d %H:%i:%s' ) 
+) 
+WHERE
+	ticket_code IN ( "210603483857137278" )
+    
+    update `benefit`
+SET `ext_attr` = JSON_SET(
+	`ext_attr`,
+	'$.category',
+	'COCO_ENJOY_CARD'
+)  WHERE `ext_attr` ->'$.category'='Co享卡'
+
+ALTER TABLE `promotion_refund_product` CHANGE `promotion_name` `promotion_name` VARCHAR(128)  CHARACTER SET utf8mb4  COLLATE utf8mb4_0900_ai_ci  NOT NULL  DEFAULT '';
+#+END_SRC
+* -- 今天
 date_format(now(),'%Y-%m-%d 00:00:00')
 -- 创建索引
 CREATE UNIQUE INDEX idx_requst_sn_action_type ON benefit_card_action(request_sn, action_type) USING BTREE;
