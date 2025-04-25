@@ -1,4 +1,7 @@
 * shell
+:PROPERTIES:
+:collapsed: true
+:END:
 ** #+BEGIN_SRC sh
 // 查看域名属性
 nslookup www.baidu.com
@@ -62,6 +65,7 @@ openssl pkey -in private_key.pem -out private_key_pkcs1.pem -traditional
 #+END_SRC
 * find 查询
 :PROPERTIES:
+:collapsed: true
 :END:
 ** #+BEGIN_EXAMPLE
 find . -type f -exec grep  -nH --null -e xxxx {} +
@@ -102,6 +106,7 @@ grep -v  # 只显示不匹配的行
 #+END_EXAMPLE
 * 日志处理
 :PROPERTIES:
+:collapsed: true
 :END:
 ** #+BEGIN_SRC sh
 sudo find ./lp1/ -name \* -type f -print | xargs grep "tongji" -l > evil_log
@@ -114,6 +119,7 @@ cat /etc/passwd|grep -v nologin|grep -v halt|grep -v shutdown|awk -F":" '{ print
 * [[git备忘]]
 * linux shell中$0,$?,$!等的特殊用法
 :PROPERTIES:
+:collapsed: true
 :END:
 ** #+BEGIN_EXAMPLE
 （1）$$
@@ -250,6 +256,7 @@ A=(a b c def)   # 定义字符数组
 ** [[../assets/image_1661480995554_0.png]]
 * $(( ))与整数运算
 :PROPERTIES:
+:collapsed: true
 :END:
 ** [[../assets/image_1661481050359_0.png]]
 
@@ -257,6 +264,9 @@ A=(a b c def)   # 定义字符数组
 在 $(( )) 中的变量名称,可于其前面加 $ 符号来替换,也可以不用。
 #+END_QUOTE
 * *进制转换*
+:PROPERTIES:
+:collapsed: true
+:END:
 ** echo ~$((2#110))~
 echo ~$((16#2a))~
 echo ~$((8#11))~
@@ -328,4 +338,9 @@ ${ZSH_CUSTOM:-~/.oh-my-zsh/custom} 这个表达式的意思是：使用环境�
 ssh pi@raspberrypi.local
 123456
 su 密码 qq2587011
+#+END_SRC
+* kill 端口占用进程
+
+#+BEGIN_SRC 
+kill -9 $(lsof -ti :8080)
 #+END_SRC
