@@ -1,7 +1,4 @@
 * shell
-:PROPERTIES:
-:collapsed: true
-:END:
 ** #+BEGIN_SRC sh
 // 查看域名属性
 nslookup www.baidu.com
