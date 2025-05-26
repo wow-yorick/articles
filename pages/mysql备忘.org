@@ -11,6 +11,9 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+-- 清空数据
+TRUNCATE TABLE ticket_code_receive;
+
 -- 删除单元测试实例的测试库
 SELECT CONCAT('DROP DATABASE `', schema_name, '`;') 
 FROM information_schema.schemata 
