@@ -12,7 +12,6 @@ pecl install redis
 #+END_SRC
 ** 7.2版本安装ext-mcrypt
 :PROPERTIES:
-:collapsed: true
 :END:
 *** http://pecl.php.net/package/mcrypt
 *** 解压后进入目录

@@ -14,6 +14,12 @@
 -- 清空数据
 TRUNCATE TABLE ticket_code_receive;
 
+-- 更新json字段的值
+`ext_attr` = JSON_SET(`ext_attr`,
+    '$.pay_amount', 2,
+    '$.cash_amount', 2
+  )
+
 -- 删除单元测试实例的测试库
 SELECT CONCAT('DROP DATABASE `', schema_name, '`;') 
 FROM information_schema.schemata 
