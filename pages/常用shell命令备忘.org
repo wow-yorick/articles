@@ -341,3 +341,8 @@ su 密码 qq2587011
 #+BEGIN_SRC 
 kill -9 $(lsof -ti :8080)
 #+END_SRC
+* 跳转目录
+
+#+BEGIN_SRC 
+cd ~+$(dirs -v | fzf | awk '{print $1}')
+#+END_SRC
