@@ -1,0 +1,20 @@
+* | ~sisyphus~ | 主编排者 | ~kimi-for-coding/k2p5~ 或 ~anthropic/claude-opus-4-6~ |
+| ~hephaestus~ | 深度工作者 | ~openai/gpt-5.3-codex~ |
+| ~prometheus~ | 战略规划者 | ~anthropic/claude-opus-4-6~ |
+| ~oracle~ | 架构顾问 | ~deepseek/deepseek-reasoner~ |
+| ~librarian~ | 文档搜索 | ~google/gemini-3-flash~ |
+| ~explore~ | 代码搜索 | ~github-copilot/grok-code-fast-1~ |
+| ~multimodal-looker~ | 图像分析 | ~openai/gpt-5.3-codex~ |
+* 当 Sisyphus 通过 ~task()~ 工具委派子任务时，会根据任务类别自动选择模型。在 ~categories~ 对象中配置
+* | ~visual-engineering~ | 前端 UI/UX、样式、动画 | Gemini 3.1 Pro |
+| ~ultrabrain~ | 深度逻辑推理、复杂架构 | GPT-5.3 Codex |
+| ~quick~ | 简单任务、单文件修改 | Claude Haiku |
+| ~writing~ | 文档、技术写作 | Gemini 3 Flash |
+| ~deep~ | 目标导向的自主问题解决 | GPT-5.3 Codex |
+*
+* | 代理 | 角色定位 | 一句话总结 |
+|----+----+----|
+| *Sisyphus (西西弗斯)* | 主协调器 / 总控 | “项目经理”——负责理解模糊需求，动态规划并推进整个任务[[https://blog.csdn.net/wxlll123/article/details/159386749][]][[https://yuanshenjian.cn/articles/2026/02/24/oh-my-opencode-atlas-vs-sisyphus-arch][]]。 |
+| *Prometheus (普罗米修斯)* | 战略规划师 | “方案设计师”——通过访谈式对话，将模糊需求转化为详细的、可执行的设计文档和计划[[https://www.zhihu.com/question/1994178446281180757/answer/2005552960378277947][]][[https://juejin.cn/post/7605869591563272227][]]。 |
+| *Atlas (阿特拉斯)* | 计划执行者 | “施工队长”——接手 Prometheus 生成的计划，按步骤拆解、委派、验证，确保计划落地[[https://www.zhihu.com/question/1994178446281180757/answer/2005552960378277947][]][[https://deepwiki.com/code-yeongyu/oh-my-opencode/4.3-atlas-hook-and-agent][]]。 |
+| *Hephaestus (赫菲斯托斯)* | 深度攻坚者 | “资深工匠”——专注于解决复杂难题、深度排查、或自主完成一个完整的目标[[https://zhuanlan.zhihu.com/p/2004151377321034775][]][[https://blog.csdn.net/wxlll123/article/details/159386749][]]。 |
