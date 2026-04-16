@@ -11,6 +11,8 @@
 * 常用sql
 
 #+BEGIN_SRC sql
+update ticket_version set ext_attr = JSON_SET(ext_attr, '$.commission_rate', 6) where `user_id` =1205645 and json_extract(ext_attr,"$.commission_rate") = 7.5
+
 -- 清空数据
 TRUNCATE TABLE ticket_code_receive;
 
